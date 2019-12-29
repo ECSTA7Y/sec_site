@@ -13,19 +13,19 @@
     
     <item>
       <title>Hello JavaScript</title>
-      <link>/2019/12/27/hello_js/</link>
+      <link>/hello_js/</link>
       <pubDate>Fri, 27 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/12/27/hello_js/</guid>
+      <guid>/hello_js/</guid>
       <description>测试实例function myFunction(){alert(&#34;Hello World!&#34;);}点我</description>
     </item>
     
     <item>
       <title>练习2</title>
-      <link>/2016/12/30/%E7%BB%83%E4%B9%A02/</link>
+      <link>/%E7%BB%83%E4%B9%A02/</link>
       <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
       
-      <guid>/2016/12/30/%E7%BB%83%E4%B9%A02/</guid>
+      <guid>/%E7%BB%83%E4%B9%A02/</guid>
       <description></description>
     </item>
     
@@ -40,10 +40,10 @@
     
     <item>
       <title>练习1</title>
-      <link>/2015/01/01/%E7%BB%83%E4%B9%A01/</link>
+      <link>/%E7%BB%83%E4%B9%A01/</link>
       <pubDate>Thu, 01 Jan 2015 13:09:13 -0600</pubDate>
       
-      <guid>/2015/01/01/%E7%BB%83%E4%B9%A01/</guid>
+      <guid>/%E7%BB%83%E4%B9%A01/</guid>
       <description></description>
     </item>
     
