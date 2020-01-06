@@ -1,5 +1,5 @@
 ---
-title: Hello JavaScript
+title: 'Hello JavaScript'
 author:  
 date: "2019-12-27"
 slug: hello_js
@@ -21,3 +21,16 @@ function myFunction()
 <button onclick="myFunction()">点我</button>
 </body>
 </html>
+
+急需解决的问题：
+
+使用Js实现上一页下一页功能！
+
+
+
+
+
+
+
+
+

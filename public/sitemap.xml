@@ -20,6 +20,11 @@
   </url>
   
   <url>
+    <loc>/r_notes/</loc>
+    <lastmod>2020-01-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/hello_js/</loc>
     <lastmod>2019-12-27T00:00:00+00:00</lastmod>
   </url>
@@ -27,6 +32,11 @@
   <url>
     <loc>/tools/</loc>
     <lastmod>2019-05-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/html_notes/</loc>
+    <lastmod>2019-01-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>

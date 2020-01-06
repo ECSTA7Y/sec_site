@@ -26,12 +26,26 @@ git push origin master # 推送 git push -u origin master  将别人的项目克
     </item>
     
     <item>
+      <title>R笔记</title>
+      <link>/r_notes/</link>
+      <pubDate>Sun, 05 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/r_notes/</guid>
+      <description>这个文章记录我对R的一些练习重点
+R 中的所有标准运算符都是函数！包括+、$、[、(
+for (i in 1:2) print(i)#&amp;gt; [1] 1#&amp;gt; [1] 2`for`(i, 1:2, print(i))#&amp;gt; [1] 1#&amp;gt; [1] 2{ print(1); print(2); print(3) }#&amp;gt; [1] 1#&amp;gt; [1] 2#&amp;gt; [1] 3`{`(print(1), print(2), print(3))#&amp;gt; [1] 1#&amp;gt; [1] 2#&amp;gt; [1] 32020年1月7日阅读Advanced R 关于函数的章节。
+do.call可以进行函数求值：
+do.call(mean, list(1:10, na.rm = TRUE))#&amp;gt; [1] 5.5mean(1:10, na.rm = TRUE)#&amp;gt; [1] 5.5R 函数默认惰性求值</description>
+    </item>
+    
+    <item>
       <title>Hello JavaScript</title>
       <link>/hello_js/</link>
       <pubDate>Fri, 27 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/hello_js/</guid>
-      <description>测试实例function myFunction(){alert(&#34;Hello World!&#34;);}点我</description>
+      <description>测试实例function myFunction(){alert(&#34;Hello World!&#34;);}点我急需解决的问题：
+使用Js实现上一页下一页功能！</description>
     </item>
     
     <item>
@@ -42,6 +56,17 @@ git push origin master # 推送 git push -u origin master  将别人的项目克
       <guid>/tools/</guid>
       <description>常用工具
 在线下载Instagram照片和视频</description>
+    </item>
+    
+    <item>
+      <title>HTML笔记</title>
+      <link>/html_notes/</link>
+      <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/html_notes/</guid>
+      <description>HTML 教程- (HTML5 标准)
+w3school HTML教程
+I take</description>
     </item>
     
   </channel>
