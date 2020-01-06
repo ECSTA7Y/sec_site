@@ -1,6 +1,7 @@
 ---
 date: "2020-01-05"
-title: Basic Git Command
+title: Basic Git Commands
+slug: git
 ---
 
 [git中文文档](https://git-scm.com/book/zh/v2)

@@ -3,7 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/basic-git-command/</loc>
+    <loc>/</loc>
+    <lastmod>2020-01-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/git/</loc>
     <lastmod>2020-01-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -19,23 +25,8 @@
   </url>
   
   <url>
-    <loc>/%E7%BB%83%E4%B9%A02/</loc>
-    <lastmod>2016-12-30T21:49:57-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2016-05-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tools/</loc>
-    <lastmod>2016-05-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <priority>0</priority>
+    <lastmod>2019-05-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
