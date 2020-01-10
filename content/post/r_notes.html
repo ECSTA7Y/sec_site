@@ -1,0 +1,33 @@
+---
+title: R笔记
+date: "2020-01-05"
+slug: r_notes
+---
+
+
+
+<p><a href="https://adv-r.hadley.nz/">Advanced R 2nd edition</a></p>
+<p>这个文章记录我对R的一些练习重点</p>
+<p>R 中的所有标准运算符都是函数！包括<code>+</code>、<code>$</code>、<code>[</code>、<code>(</code></p>
+<pre class="r"><code>for (i in 1:2) print(i)</code></pre>
+<pre><code>#&gt; [1] 1
+#&gt; [1] 2</code></pre>
+<pre class="r"><code>`for`(i, 1:2, print(i))</code></pre>
+<pre><code>#&gt; [1] 1
+#&gt; [1] 2</code></pre>
+<pre class="r"><code>{ print(1); print(2); print(3) }</code></pre>
+<pre><code>#&gt; [1] 1
+#&gt; [1] 2
+#&gt; [1] 3</code></pre>
+<pre class="r"><code>`{`(print(1), print(2), print(3))</code></pre>
+<pre><code>#&gt; [1] 1
+#&gt; [1] 2
+#&gt; [1] 3</code></pre>
+<p>2020年1月7日阅读<a href="http://adv-r.had.co.nz/Introduction.html">Advanced R</a> 关于函数的章节。</p>
+<p><code>do.call</code>可以进行函数求值：</p>
+<pre class="r"><code>do.call(mean, list(1:10, na.rm = TRUE))</code></pre>
+<pre><code>#&gt; [1] 5.5</code></pre>
+<pre class="r"><code>mean(1:10, na.rm = TRUE)</code></pre>
+<pre><code>#&gt; [1] 5.5</code></pre>
+<p>R 函数默认惰性求值</p>
+<p>Infix functions 中缀函数</p>

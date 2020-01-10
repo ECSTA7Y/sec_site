@@ -1,0 +1,48 @@
+---
+title: R笔记
+date: "2020-01-05"
+slug: r_notes
+---
+
+[Advanced R 2nd edition](https://adv-r.hadley.nz/)
+
+```{r,include=F}
+knitr::opts_chunk$set(comment='#>',error=T,message = F,warning = F,fig.align='center',out.width ='90%')
+```
+
+这个文章记录我对R的一些练习重点
+
+
+R 中的所有标准运算符都是函数！包括`+`、`$`、`[`、`(`
+
+
+
+```{r}
+for (i in 1:2) print(i)
+`for`(i, 1:2, print(i))
+
+{ print(1); print(2); print(3) }
+`{`(print(1), print(2), print(3))
+```
+
+2020年1月7日阅读[Advanced R](http://adv-r.had.co.nz/Introduction.html) 关于函数的章节。
+
+`do.call`可以进行函数求值：
+
+```{r}
+do.call(mean, list(1:10, na.rm = TRUE))
+mean(1:10, na.rm = TRUE)
+```
+
+R 函数默认惰性求值
+
+Infix functions 中缀函数
+
+
+
+
+
+
+
+
+
