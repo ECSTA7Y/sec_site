@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>A Hugo website</title>
@@ -19,14 +19,14 @@
       <guid>/git/</guid>
       <description>git中文文档
 阮一峰 Git 教程
-git status # 查看自己所处分支 查看改变的文件git status -s # 加-s参数，以获得简短的结果输出git diff # 查看文件的具体改变。git status 的结果的详细信息git diff --stat # 显示摘要而非详细信息git branch # 查看本地分支git checkout -b branch2 # 创建分支git checkout master # 切换分支git add . # 需要提交的文件git commit -m &#39;description&#39; # 提交说明，在引号内说明你做了什么改动。-m参数用于指定提交说明。是必须的。-a参数用于先将所有工作区的变动文件，提交到暂存区，再运行git commit。用了-a参数，就不用执行git add .命令了。
-git commit -am &amp;quot;message&amp;quot; 推送
+git status # 查看自己所处分支 查看改变的文件 git status -s # 加-s参数，以获得简短的结果输出  git diff # 查看文件的具体改变。git status 的结果的详细信息 git diff --stat # 显示摘要而非详细信息  git branch # 查看本地分支 git checkout -b branch2 # 创建分支 git checkout master # 切换分支  git add . # 需要提交的文件 git commit -m &#39;description&#39; # 提交说明，在引号内说明你做了什么改动。-m参数用于指定提交说明。是必须的。  -a参数用于先将所有工作区的变动文件，提交到暂存区，再运行git commit。用了-a参数，就不用执行git add .命令了。
+git commit -am &amp;quot;message&amp;quot;  推送
 如果当前分支与多个主机存在追踪关系，则可以使用-u选项指定一个默认主机，这样后面就可以不加任何参数使用git push。
-git push origin master # 推送git push -u origin master 将别人的项目克隆到本地：</description>
+git push origin master # 推送 git push -u origin master  将别人的项目克隆到本地：</description>
     </item>
     
     <item>
-      <title>R笔记</title>
+      <title>Useful R Notes</title>
       <link>/r_notes/</link>
       <pubDate>Sun, 05 Jan 2020 00:00:00 +0000</pubDate>
       
@@ -34,9 +34,9 @@ git push origin master # 推送git push -u origin master 将别人的项目克�
       <description>Advanced R 2nd edition
 这个文章记录我对R的一些练习重点
 R 中的所有标准运算符都是函数！包括+、$、[、(
-for (i in 1:2) print(i) #&amp;gt; [1] 1 #&amp;gt; [1] 2 `for`(i, 1:2, print(i)) #&amp;gt; [1] 1 #&amp;gt; [1] 2 { print(1); print(2); print(3) } #&amp;gt; [1] 1 #&amp;gt; [1] 2 #&amp;gt; [1] 3 `{`(print(1), print(2), print(3)) #&amp;gt; [1] 1 #&amp;gt; [1] 2 #&amp;gt; [1] 3 2020年1月7日阅读Advanced R 关于函数的章节。
+for (i in 1:2) print(i)#&amp;gt; [1] 1#&amp;gt; [1] 2`for`(i, 1:2, print(i))#&amp;gt; [1] 1#&amp;gt; [1] 2{ print(1); print(2); print(3) }#&amp;gt; [1] 1#&amp;gt; [1] 2#&amp;gt; [1] 3`{`(print(1), print(2), print(3))#&amp;gt; [1] 1#&amp;gt; [1] 2#&amp;gt; [1] 32020年1月7日阅读Advanced R 关于函数的章节。
 do.call可以进行函数求值：
-do.call(mean, list(1:10, na.rm = TRUE)) #&amp;gt; [1] 5.5 mean(1:10, na.rm = TRUE) #&amp;gt; [1] 5.</description>
+do.call(mean, list(1:10, na.rm = TRUE))#&amp;gt; [1] 5.5mean(1:10, na.rm = TRUE)#&amp;gt; [1] 5.</description>
     </item>
     
     <item>
@@ -45,40 +45,32 @@ do.call(mean, list(1:10, na.rm = TRUE)) #&amp;gt; [1] 5.5 mean(1:10, na.rm = TRU
       <pubDate>Fri, 27 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/hello_js/</guid>
-      <description>测试实例function myFunction(){alert(&#34;Hello World!&#34;);}点我急需解决的问题：
+      <description>测试实例   function myFunction() { alert(&#34;Hello World!&#34;); }    点我    急需解决的问题：
 使用Js实现上一页下一页功能！</description>
     </item>
     
     <item>
-      <title>常用工具</title>
+      <title>Useful Tools</title>
       <link>/tools/</link>
       <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>/tools/</guid>
-      <description>在线下载Instagram照片和视频
+      <description>twitter视频下载器
+Facebook视频下载器
+在线下载Instagram照片和视频
 站点地图生成工具</description>
     </item>
     
     <item>
-      <title>HTML笔记</title>
+      <title>HTML Notes</title>
       <link>/html_notes/</link>
       <pubDate>Sat, 05 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/html_notes/</guid>
       <description>HTML 教程- (HTML5 标准)
 w3school HTML教程
-HTML 标记标签通常被称为 HTML 标签 (HTML tag)。
-HTML 标签是由尖括号包围的关键词，比如
-与之间的文本是可见的页面内容</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/</guid>
-      <description>常用工具/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */!function(a,b){&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return b(a)}:b(a)}(&#34;undefined&#34;!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l=&#34;1.11.3&#34;,m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:&#34;&#34;,length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0a?b:0);return this.pushStack(c=0&amp;&amp;bc?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for(&#34;boolean&#34;==typeof g&amp;&amp;(j=g,g=arguments[h]||{},h++),&#34;object&#34;==typeof g||m.isFunction(g)||(g={}),h===i&amp;&amp;(g=this,h--);ih;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&amp;&amp;(j&amp;&amp;c&amp;&amp;(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&amp;&amp;m.isArray(a)?a:[]):f=a&amp;&amp;m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&amp;&amp;(g[d]=c));return g},m.extend({expando:&#34;jQuery&#34;+(l+Math.random()).replace(/\D/g,&#34;&#34;),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return&#34;function&#34;===m.type(a)},isArray:Array.isArray||function(a){return&#34;array&#34;===m.type(a)},isWindow:function(a){return null!=a&amp;&amp;a==a.window},isNumeric:function(a){return!m.isArray(a)&amp;&amp;a-parseFloat(a)+1=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||&#34;object&#34;!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&amp;&amp;!j.call(a,&#34;constructor&#34;)&amp;&amp;!j.call(a.constructor.prototype,&#34;isPrototypeOf&#34;))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+&#34;&#34;:&#34;object&#34;==typeof a||&#34;function&#34;==typeof a?h[i.call(a)]||&#34;object&#34;:typeof a},globalEval:function(b){b&amp;&amp;m.trim(b)&amp;&amp;(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.</description>
+ HTML 标记标签通常被称为 HTML 标签 (HTML tag)。
+ HTML 标签是由尖括号包围的关键词，比如    与  之间的文本是可见的页面内容</description>
     </item>
     
   </channel>

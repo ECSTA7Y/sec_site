@@ -1,5 +1,5 @@
 ---
-title: R笔记
+title: Useful R Notes
 date: "2020-01-05"
 slug: r_notes
 ---
@@ -37,6 +37,33 @@ mean(1:10, na.rm = TRUE)
 R 函数默认惰性求值
 
 Infix functions 中缀函数
+
+### Install R on Ubuntu 18.04
+
+```
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+
+sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
+
+sudo apt update
+
+sudo apt install r-base
+```
+
+# 
+
+R environments always have parents.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

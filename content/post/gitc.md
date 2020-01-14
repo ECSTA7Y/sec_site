@@ -64,7 +64,22 @@ git reset --hard HEAD^ # 回退到上一个版本
 git reset --hard 1094a # 指定回到未来版本，1094a为版本号
 ```
 
+Git 克隆
 
+Git克隆功能类似于下载。一般常用于下载github repo。
+在指定的文路径打开终端或git bash，之后找到需要下载的库的http协议或ssh协议输入如下命令，
+
+```
+git clone git@github.com:ECSTA7Y/txtnb.git
+```
+
+Git Install
+```
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git  
+```
+Some tips: Linux system could access Windows files, thus I could edit them. It is very convenient to use Ubuntu 18.04 to finish all tasks.  
 
 
 
