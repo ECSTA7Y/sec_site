@@ -10,7 +10,7 @@
 <meta property="og:title" content="Basic Git Commands - A Hugo website">
 
 
-  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+  <link href='../favicon.ico' rel='icon' type='image/x-icon'/>
 
 
 
@@ -27,8 +27,8 @@
 
 
 
-<link rel="stylesheet" href="/css/fonts.css" media="all">
-<link rel="stylesheet" href="/css/main.css" media="all">
+<link rel="stylesheet" href="../css/fonts.css" media="all">
+<link rel="stylesheet" href="../css/main.css" media="all">
 
 
 
@@ -38,8 +38,8 @@
       <header class="header">
           
 <nav class="nav">
-  <a href="/" class="nav-logo">
-    <img src="/images/logo.png"
+  <a href="../" class="nav-logo">
+    <img src="../images/logo.png"
          width="50"
          height="50"
          alt="Logo">
@@ -49,9 +49,11 @@
     
     
     
-    <li class=""><a href="https://github.com/ECSTA7Y/sec_site"> GitHub </a></li>
+    <li class=""><a href="../"> Home </a></li>
     
-    <li class=""><a href="/post/"> Post </a></li>
+    <li class=""><a href="../post/"> Posts </a></li>
+    
+    <li class=""><a href="https://github.com/ECSTA7Y/sec_site"> GitHub </a></li>
     
   </ul>
 </nav>
@@ -75,6 +77,19 @@
       <p><a href="https://git-scm.com/book/zh/v2">git中文文档</a></p>
 
 <p><a href="https://www.bookstack.cn/read/git-tutorial/README.md">阮一峰 Git 教程</a></p>
+
+<p>初始化仓库</p>
+
+<pre><code>git init
+</code></pre>
+
+<p>Git 克隆</p>
+
+<p>Git克隆功能类似于下载。一般常用于下载github repo。
+在指定的文路径打开终端或git bash，之后找到需要下载的库的http协议或ssh协议输入如下命令，</p>
+
+<pre><code>git clone git@github.com:ECSTA7Y/txtnb.git
+</code></pre>
 
 <pre><code>git status # 查看自己所处分支 查看改变的文件
 git status -s # 加-s参数，以获得简短的结果输出
@@ -124,15 +139,14 @@ git log --oneline # 简洁版本
 git reset --hard 1094a # 指定回到未来版本，1094a为版本号
 </code></pre>
 
-<p>Git 克隆</p>
+<p>版本回退后再push<a href="https://guozh.net/git-pushtijiaochenggonghouruhechexiaohuitui/">可能会出错</a>。因为当前分支的版本低于远程分支的版本，所以要想覆盖掉它，必须使用force。</p>
 
-<p>Git克隆功能类似于下载。一般常用于下载github repo。
-在指定的文路径打开终端或git bash，之后找到需要下载的库的http协议或ssh协议输入如下命令，</p>
-
-<pre><code>git clone git@github.com:ECSTA7Y/txtnb.git
+<pre><code>git push origin master -–force
 </code></pre>
 
-<p>Git Install</p>
+<hr />
+
+<p>Linux(Ubuntu) Git Install</p>
 
 <pre><code>sudo add-apt-repository ppa:git-core/ppa
 sudo apt-get update

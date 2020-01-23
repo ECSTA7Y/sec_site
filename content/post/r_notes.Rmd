@@ -50,20 +50,19 @@ sudo apt update
 sudo apt install r-base
 ```
 
-# 
+# R Environment
+
+The job of an environment is to associate, or bind, a set of names to a set of values. You can think of an environment as a bag of names, with no implied order (i.e. it doesn’t make sense to ask which is the first element in an environment)
 
 R environments always have parents.
 
+The global environment `global_env()` is sometimes called your “workspace”, as it’s where all interactive (i.e. outside of a function) computation takes place
+
+Each package attached by `library()` or `require()` becomes one of the parents of the global environment.
 
 
 
-
-
-
-
-
-
-
+stop("This is what an error looks like")
 
 
 

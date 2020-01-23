@@ -10,7 +10,7 @@
 <meta property="og:title" content="Useful R Notes - A Hugo website">
 
 
-  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+  <link href='../favicon.ico' rel='icon' type='image/x-icon'/>
 
 
 
@@ -27,8 +27,8 @@
 
 
 
-<link rel="stylesheet" href="/css/fonts.css" media="all">
-<link rel="stylesheet" href="/css/main.css" media="all">
+<link rel="stylesheet" href="../css/fonts.css" media="all">
+<link rel="stylesheet" href="../css/main.css" media="all">
 
 
 
@@ -38,8 +38,8 @@
       <header class="header">
           
 <nav class="nav">
-  <a href="/" class="nav-logo">
-    <img src="/images/logo.png"
+  <a href="../" class="nav-logo">
+    <img src="../images/logo.png"
          width="50"
          height="50"
          alt="Logo">
@@ -49,9 +49,11 @@
     
     
     
-    <li class=""><a href="https://github.com/ECSTA7Y/sec_site"> GitHub </a></li>
+    <li class=""><a href="../"> Home </a></li>
     
-    <li class=""><a href="/post/"> Post </a></li>
+    <li class=""><a href="../post/"> Posts </a></li>
+    
+    <li class=""><a href="https://github.com/ECSTA7Y/sec_site"> GitHub </a></li>
     
   </ul>
 </nav>
@@ -110,9 +112,13 @@ sudo apt update
 
 sudo apt install r-base</code></pre>
 </div>
-<div id="section" class="section level1">
-<h1></h1>
+<div id="r-environment" class="section level1">
+<h1>R Environment</h1>
+<p>The job of an environment is to associate, or bind, a set of names to a set of values. You can think of an environment as a bag of names, with no implied order (i.e. it doesn’t make sense to ask which is the first element in an environment)</p>
 <p>R environments always have parents.</p>
+<p>The global environment <code>global_env()</code> is sometimes called your “workspace”, as it’s where all interactive (i.e. outside of a function) computation takes place</p>
+<p>Each package attached by <code>library()</code> or <code>require()</code> becomes one of the parents of the global environment.</p>
+<p>stop(“This is what an error looks like”)</p>
 </div>
 
   </article>
@@ -165,7 +171,7 @@ new Valine({
 
 
     
-<script src="/js/math-code.js"></script>
+<script src="../js/math-code.js"></script>
 <script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 

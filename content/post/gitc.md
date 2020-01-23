@@ -8,6 +8,21 @@ slug: git
 
 [阮一峰 Git 教程](https://www.bookstack.cn/read/git-tutorial/README.md)
 
+初始化仓库
+
+```
+git init
+```
+
+Git 克隆
+
+Git克隆功能类似于下载。一般常用于下载github repo。
+在指定的文路径打开终端或git bash，之后找到需要下载的库的http协议或ssh协议输入如下命令，
+
+```
+git clone git@github.com:ECSTA7Y/txtnb.git
+```
+
 ```
 git status # 查看自己所处分支 查看改变的文件
 git status -s # 加-s参数，以获得简短的结果输出
@@ -63,17 +78,16 @@ git reset --hard HEAD^ # 回退到上一个版本
 
 git reset --hard 1094a # 指定回到未来版本，1094a为版本号
 ```
-
-Git 克隆
-
-Git克隆功能类似于下载。一般常用于下载github repo。
-在指定的文路径打开终端或git bash，之后找到需要下载的库的http协议或ssh协议输入如下命令，
+版本回退后再push[可能会出错](https://guozh.net/git-pushtijiaochenggonghouruhechexiaohuitui/)。因为当前分支的版本低于远程分支的版本，所以要想覆盖掉它，必须使用force。
 
 ```
-git clone git@github.com:ECSTA7Y/txtnb.git
+git push origin master -–force
 ```
 
-Git Install
+---
+
+Linux(Ubuntu) Git Install
+
 ```
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt-get update

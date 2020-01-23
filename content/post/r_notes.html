@@ -41,7 +41,11 @@ sudo apt update
 
 sudo apt install r-base</code></pre>
 </div>
-<div id="section" class="section level1">
-<h1></h1>
+<div id="r-environment" class="section level1">
+<h1>R Environment</h1>
+<p>The job of an environment is to associate, or bind, a set of names to a set of values. You can think of an environment as a bag of names, with no implied order (i.e. it doesn’t make sense to ask which is the first element in an environment)</p>
 <p>R environments always have parents.</p>
+<p>The global environment <code>global_env()</code> is sometimes called your “workspace”, as it’s where all interactive (i.e. outside of a function) computation takes place</p>
+<p>Each package attached by <code>library()</code> or <code>require()</code> becomes one of the parents of the global environment.</p>
+<p>stop(“This is what an error looks like”)</p>
 </div>

@@ -1,4 +1,5 @@
 baseurl = "/"
+relativeurls = true
 languageCode = "en-us"
 title = "A Hugo website"
 theme = "hugo-lithium"
@@ -10,11 +11,17 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     post = "/:slug/"
 
 [[menu.main]]
-    name = "Post"
+    name = "Home"
+    url = "/"
+    weight = 1
+[[menu.main]]
+    name = "Posts"
     url = "/post/"
+    weight = 2
 [[menu.main]]
     name = "GitHub"
     url = "https://github.com/ECSTA7Y/sec_site"
+    weight = 3
 
 
 [params]
