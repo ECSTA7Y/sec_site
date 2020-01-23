@@ -27,14 +27,16 @@ a {
 }
 
 code {
-  color: #000000;
+  color: #1C887E;
   background-color: #D3D3D3;
+  font-family: 'Fira Code', Consolas, Monaco;
+  border-radius: 2px
 }
 
 code.hljs {
   background-color: #D3D3D3;
+  font-family: 'Fira Code', Consolas, Monaco;
 }
-
 
 .wrapper {
   overflow: hidden;
