@@ -1,0 +1,36 @@
+---
+title: '法律条文文本分类'
+author: " "
+date: "2020/2/7"
+slug: index
+---
+
+[数据可视化](./law_learning)
+
+[数据训练，交叉验证](./cross_validate)
+
+
+
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+</head>
+  <body>
+
+<div id="vcomments"></div>
+  <script>
+var valine = new Valine();
+valine.init({
+    el: '#vcomments',
+    appId: 'ENqAtKJ5L5YmUOk2P8Q6Qkcb-gzGzoHsz',
+    appKey: 'CF587qMfelC8Dqrdtg9pPAgr',
+    lang: 'en'
+  })
+</script>
+  </body>
+
+
+
+
+
+
