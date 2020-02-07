@@ -3,12 +3,23 @@ title: '法律条文文本分类'
 author: " "
 date: "2020/2/7"
 slug: index
+output:
+  bookdown::html_document2:
+    theme: readable
+    
 ---
+# 数据探索
 
 [数据可视化](./law_learning)
 
-[数据训练，交叉验证](./cross_validate)
+# 数据训练，交叉验证
 
+
+[词频](./cross_validate)
+
+Tf-Idf
+
+word2vec
 
 
 
@@ -16,7 +27,6 @@ slug: index
 
 </head>
   <body>
-
 <div id="vcomments"></div>
   <script>
 var valine = new Valine();
