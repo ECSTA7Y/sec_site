@@ -5,6 +5,8 @@ date: " "
 output:
   bookdown::html_document2:
     theme: readable
+    
+# theme: default, cerulean, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone, simplex, yeti
 ---
 
 # 书籍

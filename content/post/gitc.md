@@ -66,9 +66,17 @@ git clone [url]
 
 查看提交历史：
 
+`git log` 命令可以显示所有提交过的版本信息，但回退后无法看到被删除的 commit的版本信息。
+
 ```
 git log
 git log --oneline # 简洁版本
+```
+
+`git reflog`可以显示已经被删除的 `commit`记录和 `reset`的操作。也就是说，`git reflog` 可以查看所有分支的所有操作记录。
+
+```
+git reflog
 ```
 
 版本回退
@@ -94,7 +102,6 @@ sudo apt-get update
 sudo apt-get install git  
 ```
 Some tips: Linux system could access Windows files, thus I could edit them. It is very convenient to use Ubuntu 18.04 to finish all tasks.  
-
 
 
 

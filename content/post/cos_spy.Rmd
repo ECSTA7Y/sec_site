@@ -1,0 +1,22 @@
+---
+title: '使用R爬虫分析统计之都论坛标题'
+author: ' '
+date: '2019-12-28'
+slug: cospy
+---
+
+Loading ...
+<!---
+<script>
+
+window.location.replace("https://mp.weixin.qq.com/s/h3H6QMMcTdGMWwts_eEPEw")
+
+</script>
+-->
+<script>
+  if (confirm("是否跳转到微信页面？")) {
+    window.location.replace("https://mp.weixin.qq.com/s/h3H6QMMcTdGMWwts_eEPEw")
+  } else {
+
+  }
+</script>

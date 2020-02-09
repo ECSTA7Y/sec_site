@@ -4,9 +4,14 @@ author: " "
 date: " "
 output:
   bookdown::html_document2:
-    toc: true
-    theme: united
+    theme: readable
+    
+# theme: default, cerulean, journal, flatly, darkly, readable, spacelab, united, cosmo, lumen, paper, sandstone, simplex, yeti
 ---
+
+# 书籍
+
+## 英文
 
 [下英文电子书的网站](http://gen.lib.rus.ec/)
 
@@ -14,7 +19,35 @@ output:
 
 [看Sci-Hub网址更新的网站](https://lovescihub.wordpress.com/)
 
+## 中文
+
 买中文电子书的邮箱，直接把书籍信息发过去：<1542918647@qq.com>
 
+[鸠摩搜索](https://www.jiumodiary.com/)
+
+# 种子
+
+[MagnetDL](https://www.magnetdl.me/)
+
+[The Pirate Bay](https://thepiratebay.org/)
 
 
+
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+</head>
+  <body>
+
+<div id="vcomments"></div>
+  <script>
+var valine = new Valine();
+valine.init({
+    el: '#vcomments',
+    appId: 'ENqAtKJ5L5YmUOk2P8Q6Qkcb-gzGzoHsz',
+    appKey: 'CF587qMfelC8Dqrdtg9pPAgr',
+    lang: 'en'
+  })
+</script>
+  </body>
+  
+  
