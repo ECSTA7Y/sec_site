@@ -11,6 +11,8 @@ output:
 
 [github](https://github.com/songxxiao/law_learning)
 
+[useful_tools.py](./useful_tools)
+
 # 数据探索
 
 [数据可视化](./law_learning)
@@ -20,7 +22,7 @@ output:
 
 [词频](./cross_validate)
 
-Tf-Idf
+[Tf-Idf](./Tf_Idf_Vectorizer)
 
 word2vec
 
