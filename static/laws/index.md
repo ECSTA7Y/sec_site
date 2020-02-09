@@ -3,10 +3,6 @@ title: '法律条文文本分类'
 author: " "
 date: "2020/2/7"
 slug: index
-output:
-  bookdown::html_document2:
-    theme: readable
-    
 ---
 
 [github](https://github.com/songxxiao/law_learning)
