@@ -1,11 +1,4 @@
 
 
-A new website made by Malcolm Song.
+前轱辘不转后轱辘转厂牌主页
 
-
-
-<!---
-<script>
-
-document.getElementById("archive-title").style.display="none";//隐藏文章链接
---->
