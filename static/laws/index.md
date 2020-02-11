@@ -20,7 +20,8 @@ slug: index
 
 [Tf-Idf](./Tf_Idf_Vectorizer)
 
-word2vec
+[word2vec](./word2vec)
+
 
 
 
