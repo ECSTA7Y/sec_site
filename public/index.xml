@@ -6,10 +6,20 @@
     <description>Recent content on 前轱辘不转后轱辘转厂牌</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>计量统计和说唱音乐的神秘联系</title>
+      <link>/rap_metrics/</link>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/rap_metrics/</guid>
+      <description>请点击：
+https://mp.weixin.qq.com/s/SueKxPibp4f74QFaYWUwdA</description>
+    </item>
     
     <item>
       <title>使用Python爬取B站的土味视频标题！</title>
@@ -17,8 +27,8 @@
       <pubDate>Fri, 31 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>/bilispy/</guid>
-      <description>Loading …
-window.location.replace(&#34;https://mp.weixin.qq.com/s/eVgs3NWPMQRKDzgmnA6T9g&#34;)</description>
+      <description>Loading &amp;hellip;
+  </description>
     </item>
     
     <item>
@@ -143,7 +153,8 @@ Facebook视频下载器
       <description>HTML 教程- (HTML5 标准)
 w3school HTML教程
 HTML 标记标签通常被称为 HTML 标签 (HTML tag)。
-HTML 标签是由尖括号包围的关键词，比如与之间的文本是可见的页面内容</description>
+HTML 标签是由尖括号包围的关键词，比如
+与之间的文本是可见的页面内容</description>
     </item>
     
   </channel>

@@ -380,21 +380,59 @@ import itertools
 from sklearn.model_selection import cross_val_score
 
 stopword_list = [k.strip() for k in open(&#39;../data/stopword.txt&#39;, encoding=&#39;utf8&#39;).readlines() if k.strip() != &#39;&#39;]
+# 加入新的停用词
+stop_word_new = [&#39;一&#39;,&#39;二&#39;,&#39;三&#39;,&#39;四&#39;,&#39;五&#39;,&#39;六&#39;,&#39;七&#39;,&#39;八&#39;,&#39;九&#39;,&#39;十&#39;,&#39;未&#39;]
+stopword_list.extend(stop_word_new)
+jieba.add_word(&#39;区块链&#39;)
+jieba.add_word(&#39;信息管理&#39;)
+#jieba.add_word(&#39;微博客&#39;)
+#jieba.add_word(&#39;关键信息&#39;)
+#jieba.add_word(&#39;区块链信息&#39;)
+#jieba.add_word(&#39;管理办法&#39;)
+#jieba.del_word(&#39;监督管理&#39;)
+#jieba.add_word(&#39;主管部门&#39;)
+###################################################################下面是尝试区
+#jieba.add_word(&#39;遵守&#39;)
+#jieba.add_word(&#39;拒不&#39;)
+#jieba.add_word(&#39;注册服务&#39;)
+#jieba.suggest_freq(&#39;机构应当&#39;, True)
+#jieba.add_word(&#39;危害网络安全&#39;)
+#jieba.add_word(&#39;网络运营者&#39;)
+#jieba.suggest_freq(&#39;运营者&#39;, True)
 
+##################################################################下面是丢弃区
+#jieba.add_word(&#39;法人组织&#39;)
+#jieba.add_word(&#39;有序发展&#39;)
+#jieba.add_word(&#39;管理办法&#39;)
+#jieba.add_word(&#39;部门应当&#39;)
+#jieba.add_word(&#39;机构应当&#39;)
+#jieba.del_word(&#39;网络安全&#39;)
+#jieba.add_word(&#39;根服务器&#39;)
+#jieba.add_word(&#39;法规规定&#39;)
+#########################################################################
 def get_vectorize(wordlist,vector = &#39;CountVectorizer&#39;,feats =150):
     &#39;&#39;&#39;
     得到特征X矩阵
     &#39;&#39;&#39;
     if vector == &#39;CountVectorizer&#39;:
         cv = CountVectorizer(max_features = feats,token_pattern=&#39;[\u4e00-\u9fa5_a-zA-Z0-9]{1,}&#39;)
+        cv_fit = cv.fit_transform(wordlist).toarray()
+        colnames = cv.get_feature_names()
+        word_matrix = pd.DataFrame(cv_fit, columns=colnames)   
+        return word_matrix
     elif vector == &#39;TfidfVectorizer&#39;:
-        cv = CountVectorizer(max_features = feats,token_pattern=&#39;[\u4e00-\u9fa5_a-zA-Z0-9]{1,}&#39;)
+        cv = TfidfVectorizer(max_features = feats,token_pattern=&#39;[\u4e00-\u9fa5_a-zA-Z0-9]{1,}&#39;)
+        cv_fit = cv.fit_transform(wordlist).toarray()
+        colnames = cv.get_feature_names()
+        word_matrix = pd.DataFrame(cv_fit, columns=colnames)   
+        return word_matrix
     elif vector == &#39;HashingVectorizer&#39;:
         cv =  HashingVectorizer(n_features = feats)
-    cv_fit = cv.fit_transform(wordlist).toarray()
-    colnames = cv.get_feature_names()
-    word_matrix = pd.DataFrame(cv_fit, columns=colnames)   
-    return word_matrix
+        cv_fit = cv.fit_transform(wordlist).toarray()
+        word_matrix = pd.DataFrame(cv_fit)
+        return word_matrix
+        
+    
 
 def get_cutword(string):
     &#39;&#39;&#39;
@@ -405,15 +443,24 @@ def get_cutword(string):
     combined = &#39; &#39;.join(cutWords)
     return combined
 
+def get_cutword0(string):
+    &#39;&#39;&#39;
+    jieba分词,正则替换数字
+    &#39;&#39;&#39;
+    string = re.sub(&quot;[0-9]&quot;,&quot; &quot;,string) # 正则替换数字
+    cutWords = [k for k in jieba.cut(string) if k != &#39;&#39; if k not in stopword_list]
+    return cutWords
 
-def generate_ngrams(text, n_gram=1):
+
+def generate_ngrams(text, n_gram=2):
     &#39;&#39;&#39;
     得到N元组
     &#39;&#39;&#39;
-    token = [k for k in jieba.cut(text) if k != &#39;&#39; if k not in stopword_list]
+    token = [k for k in jieba.cut(text) if k.isspace() == False if k != &#39;&#39; if k not in stopword_list]
     ngrams = zip(*[token[i:] for i in range(n_gram)])
-    single = [&#39;_&#39;.join(j) for j in ngrams]
-    combined = &#39; &#39;.join(single)
+    single = [&#39;_&#39;.join(j) for j in ngrams if j != &#39;&#39; if j not in stopword_list]
+    if single != &#39;_&#39;:
+        combined = &#39; &#39;.join(single)
     return combined
 
 def plot_count(df,n):
@@ -426,7 +473,7 @@ def plot_count(df,n):
     uplot.sort_values(by = &#39;Score&#39;,inplace = True,ascending=True)
     uplot.plot.barh(alpha=0.7,figsize=(6,8))
     
-def plot_count_by(df, row, n,figsize=(10,12)):
+def plot_count_by(df, row, n,figsize=(10,15)):
     &#39;&#39;&#39;
     分面绘制条形图
     &#39;&#39;&#39;
@@ -475,6 +522,7 @@ def cross_print_info(model,x,y,cv): # 模型, x, y, 交叉验证数
     cvscore = cross_val_score(model, x, y, cv=cv)
     print(cv,&#39;折交叉验证准确率为&#39;,round(cvscore.mean(),3))
     
+
 </code></pre>
 
 

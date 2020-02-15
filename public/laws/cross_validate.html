@@ -16438,7 +16438,7 @@ div#notebook {
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>Building prefix dict from the default dictionary ...
 Loading model from cache C:\Users\xsong\AppData\Local\Temp\jieba.cache
-Loading model cost 0.729 seconds.
+Loading model cost 0.801 seconds.
 Prefix dict has been built succesfully.
 </pre>
 </div>
@@ -16453,7 +16453,7 @@ Prefix dict has been built succesfully.
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 验证集和停用词</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 训练集和停用词</span>
 <span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/TrainSet.csv&quot;</span><span class="p">,</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gb18030&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -16560,7 +16560,7 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.663
+<pre>10 折交叉验证准确率为 0.627
 </pre>
 </div>
 </div>
@@ -16593,7 +16593,7 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.663
+<pre>10 折交叉验证准确率为 0.648
 </pre>
 </div>
 </div>
@@ -16627,7 +16627,7 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.628
+<pre>10 折交叉验证准确率为 0.619
 </pre>
 </div>
 </div>
@@ -16660,7 +16660,7 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.668
+<pre>10 折交叉验证准确率为 0.683
 </pre>
 </div>
 </div>
@@ -16674,8 +16674,8 @@ Prefix dict has been built succesfully.
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">xgboost</span> <span class="k">import</span> <span class="n">XGBClassifier</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 <span class="c1">#best = gridcv.best_estimator_</span>
 <span class="n">cross_print_info</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">unigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
@@ -16694,7 +16694,7 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.674
+<pre>10 折交叉验证准确率为 0.683
 </pre>
 </div>
 </div>
@@ -16714,6 +16714,41 @@ Prefix dict has been built succesfully.
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">lightgbm</span> <span class="k">import</span> <span class="n">LGBMClassifier</span>
+
+<span class="n">lgbm</span> <span class="o">=</span> <span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s1">&#39;multiclass&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">unigramnp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">unigram</span><span class="p">)</span>
+<span class="n">cross_print_info</span><span class="p">(</span><span class="n">lgbm</span><span class="p">,</span> <span class="n">unigramnp</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10 折交叉验证准确率为 0.65
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">confusion_matrix</span>
@@ -16738,7 +16773,7 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>训练准确率为 0.955
+<pre>训练准确率为 0.96
 </pre>
 </div>
 </div>
@@ -16749,7 +16784,7 @@ Prefix dict has been built succesfully.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -16766,7 +16801,7 @@ Prefix dict has been built succesfully.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>
@@ -16780,7 +16815,7 @@ Prefix dict has been built succesfully.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">)]</span>
@@ -16807,16 +16842,16 @@ Prefix dict has been built succesfully.
 <pre>Normalized confusion matrix
 [[0.95348837 0.         0.         0.         0.         0.
   0.04651163 0.        ]
- [0.         0.9787234  0.         0.         0.         0.
+ [0.0212766  0.95744681 0.         0.         0.         0.
   0.0212766  0.        ]
  [0.         0.         0.95348837 0.         0.         0.02325581
   0.02325581 0.        ]
- [0.         0.         0.         0.92857143 0.         0.
-  0.07142857 0.        ]
+ [0.         0.         0.         0.97619048 0.         0.
+  0.02380952 0.        ]
  [0.         0.         0.         0.         1.         0.
   0.         0.        ]
- [0.         0.         0.05769231 0.         0.         0.88461538
-  0.05769231 0.        ]
+ [0.         0.         0.05769231 0.         0.         0.90384615
+  0.03846154 0.        ]
  [0.01123596 0.         0.02247191 0.         0.         0.
   0.96629213 0.        ]
  [0.         0.         0.         0.         0.         0.
@@ -16860,9 +16895,9 @@ L 77.535938 22.903125
 z
 " style="fill:#ffffff;"/>
    </g>
-   <g clip-path="url(#p3f92ae8df2)">
-    <image height="235" id="image7627791900" transform="scale(1 -1)translate(0 -235)" width="235" x="77.535938" xlink:href="data:image/png;base64,
-iVBORw0KGgoAAAANSUhEUgAAAOsAAADrCAYAAACICmHVAAAABHNCSVQICAgIfAhkiAAAA5FJREFUeJzt3SFuVFEYhuFp5xISEOQupoaEBMcC2EYdBlHZBIWrYC8YFKbbwE8wNGTaGdYAac/JyzzPBr4R950j/7O7/fG4Af7KenE5fPN8+CLwT8QKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFCxHI4jL9LdX5+Nnxzs9ls7h8OwzeXrf/Dp7S++Thld3d7M3zTlwQRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBCxzLroNsPvvStyT2l9/2X45o+v18M3ZzmdLwnixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsULE2d3+eJz9I3hc68XllN3d7c2U3VPhZYUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVohYZv+A/9367tPwzVO65vbz137K7qsXz4ZvelkhQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEnNRhqvXt1fDN3bfr4Zuz3D8chm++fL4dvjmLlxUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsULElMNU6+sPM2Y3u++fp+yeimU7/r9/xjGsWbysECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEcv69mr4qGtuPJb9w3HK7rIdv+llhQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsEPEHUvI07LNTWrwAAAAASUVORK5CYII=" y="-22.13125"/>
+   <g clip-path="url(#p613b290e1d)">
+    <image height="235" id="image32318f3487" transform="scale(1 -1)translate(0 -235)" width="235" x="77.535938" xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAOsAAADrCAYAAACICmHVAAAABHNCSVQICAgIfAhkiAAAA5VJREFUeJzt3TFuU0EARdHvxCAoXbCUVBESomcnaZGQgI5UNBRZD4KCKguhdBmBY5s1gMiMbnzOBt4v5v4pZ3W3Ox4X4K9sLq6Gb54NXwT+iVghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIWB8O49+lOjtbDd9clmW53x+Gb67P/Q8f0ubluym729ub4ZtOEkSIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQsR61otuM/zaeUXuIW3efBm++fPr9fDNWU7nJEGcWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVohY3e2Ox9kfwf+1ubiasru9vZmyeyrcrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChHr2R/w2G0u3w7fPKXX3Hb3hym7T9bj7zk3K0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihYiTephq8+rD8M3tj8/DN2e5349/JGq1Gj45jZsVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFCxHrGY0IvXn8cvrksy7L9fj1l91Ssz8f/+2ec31ncrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChGrZ5fvj6NHt98+jZ7kkbr7vZ+y+/zp+fBNNytEiBUixAoRYoUIsUKEWCFCrBAhVogQK0SIFSLEChFihQixQoRYIUKsECFWiBArRIgVIsQKEWKFCLFChFghQqwQIVaIECtEiBUixAoRYoWIP8WsOKCqYI3EAAAAAElFTkSuQmCC" y="-22.13125"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
@@ -19424,70 +19459,75 @@ z
     </g>
    </g>
    <g id="text_27">
-    <!-- 0.00 -->
+    <!-- 0.02 -->
+    <defs>
+     <path d="M 4.6875 3.90625 
+Q 5.078125 9.765625 10.15625 14.453125 
+Q 15.234375 19.140625 23.046875 29.09375 
+Q 30.859375 39.0625 33.203125 44.53125 
+Q 35.546875 50 34.953125 53.90625 
+Q 34.375 57.8125 31.25 60.34375 
+Q 28.125 62.890625 24.015625 62.5 
+Q 19.921875 62.109375 16.203125 59.375 
+Q 12.5 56.640625 10.546875 51.171875 
+L 3.125 52.34375 
+Q 6.25 61.328125 11.125 65.421875 
+Q 16.015625 69.53125 22.65625 69.921875 
+Q 26.5625 70.3125 29.6875 69.71875 
+Q 32.8125 69.140625 36.125 66.984375 
+Q 39.453125 64.84375 41.59375 60.546875 
+Q 43.75 56.25 43.15625 50.1875 
+Q 42.578125 44.140625 37.109375 35.734375 
+Q 31.640625 27.34375 16.015625 9.375 
+L 44.140625 9.375 
+L 44.140625 2.34375 
+L 4.6875 2.34375 
+z
+" id="SimHei-50"/>
+    </defs>
     <g transform="translate(82.175195 66.820898)scale(0.1 -0.1)">
      <use xlink:href="#SimHei-48"/>
      <use x="50" xlink:href="#SimHei-46"/>
      <use x="100" xlink:href="#SimHei-48"/>
-     <use x="150" xlink:href="#SimHei-48"/>
+     <use x="150" xlink:href="#SimHei-50"/>
     </g>
    </g>
    <g id="text_28">
-    <!-- 0.98 -->
+    <!-- 0.96 -->
     <defs>
-     <path d="M 2.734375 16.796875 
-Q 2.734375 26.171875 5.078125 30.65625 
-Q 7.421875 35.15625 12.890625 37.890625 
-Q 8.203125 40.625 6.640625 43.9375 
-Q 5.078125 47.265625 4.875 51.5625 
-Q 4.6875 55.859375 6.046875 58.984375 
-Q 7.421875 62.109375 10.15625 64.84375 
-Q 12.890625 67.578125 16.203125 68.546875 
-Q 19.53125 69.53125 23.4375 69.53125 
-Q 27.34375 69.53125 30.46875 68.75 
-Q 33.59375 67.96875 37.109375 65.421875 
-Q 40.625 62.890625 42.1875 58.203125 
-Q 43.75 53.515625 41.984375 47.265625 
-Q 40.234375 41.015625 32.8125 37.5 
-Q 39.453125 35.546875 42.1875 31.4375 
-Q 44.921875 27.34375 44.921875 21.484375 
-Q 44.921875 15.625 43.15625 12.109375 
-Q 41.40625 8.59375 39.25 6.25 
-Q 37.109375 3.90625 33.390625 2.53125 
-Q 29.6875 1.171875 24.015625 1.171875 
-Q 18.359375 1.171875 14.25 2.53125 
-Q 10.15625 3.90625 7.421875 6.640625 
-Q 4.6875 9.375 3.703125 13.078125 
-Q 2.734375 16.796875 2.734375 26.171875 
+     <path d="M 3.515625 19.53125 
+Q 4.296875 30.859375 6.046875 34.765625 
+Q 7.8125 38.671875 11.328125 44.53125 
+L 27.34375 69.53125 
+L 36.328125 69.53125 
+L 19.921875 43.75 
+Q 30.46875 46.484375 36.71875 42.96875 
+Q 42.96875 39.453125 45.109375 34.953125 
+Q 47.265625 30.46875 47.453125 25.1875 
+Q 47.65625 19.921875 45.890625 14.84375 
+Q 44.140625 9.765625 39.640625 5.65625 
+Q 35.15625 1.5625 27.140625 1.171875 
+Q 19.140625 0.78125 13.46875 4.09375 
+Q 7.8125 7.421875 5.65625 13.46875 
+Q 3.515625 19.53125 4.296875 30.859375 
 z
-M 10.9375 26.5625 
-Q 10.546875 17.1875 12.296875 13.671875 
-Q 14.0625 10.15625 18.75 9.171875 
-Q 23.4375 8.203125 28.515625 9.375 
-Q 33.59375 10.546875 35.546875 14.84375 
-Q 37.5 19.140625 36.90625 23.4375 
-Q 36.328125 27.734375 32.03125 30.65625 
-Q 27.734375 33.59375 22.65625 33.203125 
-Q 17.578125 32.8125 14.25 29.6875 
-Q 10.9375 26.5625 10.546875 17.1875 
+M 12.5 16.015625 
+Q 19.53125 8.59375 25.390625 8.203125 
+Q 31.25 7.8125 35.15625 12.109375 
+Q 39.0625 16.40625 39.0625 24.609375 
+Q 39.0625 32.8125 34.171875 35.9375 
+Q 29.296875 39.0625 23.234375 38.28125 
+Q 17.1875 37.5 14.453125 32.421875 
+Q 11.71875 27.34375 12.109375 21.671875 
+Q 12.5 16.015625 19.53125 8.59375 
 z
-M 12.109375 56.25 
-Q 12.109375 48.4375 14.84375 44.921875 
-Q 17.578125 41.40625 23.4375 41.40625 
-Q 29.296875 41.40625 32.21875 44.921875 
-Q 35.15625 48.4375 34.953125 53.3125 
-Q 34.765625 58.203125 31.4375 60.546875 
-Q 28.125 62.890625 22.453125 62.5 
-Q 16.796875 62.109375 14.453125 59.171875 
-Q 12.109375 56.25 12.109375 48.4375 
-z
-" id="SimHei-56"/>
+" id="SimHei-54"/>
     </defs>
     <g style="fill:#ffffff;" transform="translate(111.453711 66.820898)scale(0.1 -0.1)">
      <use xlink:href="#SimHei-48"/>
      <use x="50" xlink:href="#SimHei-46"/>
      <use x="100" xlink:href="#SimHei-57"/>
-     <use x="150" xlink:href="#SimHei-56"/>
+     <use x="150" xlink:href="#SimHei-54"/>
     </g>
    </g>
    <g id="text_29">
@@ -19528,31 +19568,6 @@ z
    </g>
    <g id="text_33">
     <!-- 0.02 -->
-    <defs>
-     <path d="M 4.6875 3.90625 
-Q 5.078125 9.765625 10.15625 14.453125 
-Q 15.234375 19.140625 23.046875 29.09375 
-Q 30.859375 39.0625 33.203125 44.53125 
-Q 35.546875 50 34.953125 53.90625 
-Q 34.375 57.8125 31.25 60.34375 
-Q 28.125 62.890625 24.015625 62.5 
-Q 19.921875 62.109375 16.203125 59.375 
-Q 12.5 56.640625 10.546875 51.171875 
-L 3.125 52.34375 
-Q 6.25 61.328125 11.125 65.421875 
-Q 16.015625 69.53125 22.65625 69.921875 
-Q 26.5625 70.3125 29.6875 69.71875 
-Q 32.8125 69.140625 36.125 66.984375 
-Q 39.453125 64.84375 41.59375 60.546875 
-Q 43.75 56.25 43.15625 50.1875 
-Q 42.578125 44.140625 37.109375 35.734375 
-Q 31.640625 27.34375 16.015625 9.375 
-L 44.140625 9.375 
-L 44.140625 2.34375 
-L 4.6875 2.34375 
-z
-" id="SimHei-50"/>
-    </defs>
     <g transform="translate(257.846289 66.820898)scale(0.1 -0.1)">
      <use xlink:href="#SimHei-48"/>
      <use x="50" xlink:href="#SimHei-46"/>
@@ -19669,43 +19684,61 @@ z
     </g>
    </g>
    <g id="text_46">
-    <!-- 0.93 -->
+    <!-- 0.98 -->
     <defs>
-     <path d="M 3.90625 19.140625 
-L 10.9375 20.3125 
-Q 12.5 15.234375 16.015625 11.90625 
-Q 19.53125 8.59375 24.796875 8.78125 
-Q 30.078125 8.984375 33.203125 13.078125 
-Q 36.328125 17.1875 35.9375 22.453125 
-Q 35.546875 27.734375 31.828125 30.65625 
-Q 28.125 33.59375 19.921875 34.765625 
-L 19.921875 39.84375 
-Q 28.125 40.625 31.828125 44.140625 
-Q 35.546875 47.65625 35.15625 53.3125 
-Q 34.765625 58.984375 30.078125 61.515625 
-Q 25.390625 64.0625 20.109375 62.109375 
-Q 14.84375 60.15625 11.71875 51.171875 
-L 4.6875 52.34375 
-Q 7.03125 59.375 11.125 64.0625 
-Q 15.234375 68.75 22.265625 69.53125 
-Q 29.296875 70.3125 34.5625 67.765625 
-Q 39.84375 65.234375 41.984375 59.953125 
-Q 44.140625 54.6875 42.578125 48.4375 
-Q 41.015625 42.1875 33.59375 37.5 
-Q 39.0625 35.15625 41.984375 30.46875 
-Q 44.921875 25.78125 43.9375 18.15625 
-Q 42.96875 10.546875 37.109375 5.859375 
-Q 31.25 1.171875 23.828125 1.359375 
-Q 16.40625 1.5625 10.9375 6.046875 
-Q 5.46875 10.546875 3.90625 19.140625 
+     <path d="M 2.734375 16.796875 
+Q 2.734375 26.171875 5.078125 30.65625 
+Q 7.421875 35.15625 12.890625 37.890625 
+Q 8.203125 40.625 6.640625 43.9375 
+Q 5.078125 47.265625 4.875 51.5625 
+Q 4.6875 55.859375 6.046875 58.984375 
+Q 7.421875 62.109375 10.15625 64.84375 
+Q 12.890625 67.578125 16.203125 68.546875 
+Q 19.53125 69.53125 23.4375 69.53125 
+Q 27.34375 69.53125 30.46875 68.75 
+Q 33.59375 67.96875 37.109375 65.421875 
+Q 40.625 62.890625 42.1875 58.203125 
+Q 43.75 53.515625 41.984375 47.265625 
+Q 40.234375 41.015625 32.8125 37.5 
+Q 39.453125 35.546875 42.1875 31.4375 
+Q 44.921875 27.34375 44.921875 21.484375 
+Q 44.921875 15.625 43.15625 12.109375 
+Q 41.40625 8.59375 39.25 6.25 
+Q 37.109375 3.90625 33.390625 2.53125 
+Q 29.6875 1.171875 24.015625 1.171875 
+Q 18.359375 1.171875 14.25 2.53125 
+Q 10.15625 3.90625 7.421875 6.640625 
+Q 4.6875 9.375 3.703125 13.078125 
+Q 2.734375 16.796875 2.734375 26.171875 
 z
-" id="SimHei-51"/>
+M 10.9375 26.5625 
+Q 10.546875 17.1875 12.296875 13.671875 
+Q 14.0625 10.15625 18.75 9.171875 
+Q 23.4375 8.203125 28.515625 9.375 
+Q 33.59375 10.546875 35.546875 14.84375 
+Q 37.5 19.140625 36.90625 23.4375 
+Q 36.328125 27.734375 32.03125 30.65625 
+Q 27.734375 33.59375 22.65625 33.203125 
+Q 17.578125 32.8125 14.25 29.6875 
+Q 10.9375 26.5625 10.546875 17.1875 
+z
+M 12.109375 56.25 
+Q 12.109375 48.4375 14.84375 44.921875 
+Q 17.578125 41.40625 23.4375 41.40625 
+Q 29.296875 41.40625 32.21875 44.921875 
+Q 35.15625 48.4375 34.953125 53.3125 
+Q 34.765625 58.203125 31.4375 60.546875 
+Q 28.125 62.890625 22.453125 62.5 
+Q 16.796875 62.109375 14.453125 59.171875 
+Q 12.109375 56.25 12.109375 48.4375 
+z
+" id="SimHei-56"/>
     </defs>
     <g style="fill:#ffffff;" transform="translate(170.010742 125.37793)scale(0.1 -0.1)">
      <use xlink:href="#SimHei-48"/>
      <use x="50" xlink:href="#SimHei-46"/>
      <use x="100" xlink:href="#SimHei-57"/>
-     <use x="150" xlink:href="#SimHei-51"/>
+     <use x="150" xlink:href="#SimHei-56"/>
     </g>
    </g>
    <g id="text_47">
@@ -19727,24 +19760,12 @@ z
     </g>
    </g>
    <g id="text_49">
-    <!-- 0.07 -->
-    <defs>
-     <path d="M 13.28125 2.34375 
-Q 20.3125 32.03125 37.890625 61.328125 
-L 4.296875 61.328125 
-L 4.296875 68.359375 
-L 46.09375 68.359375 
-L 46.09375 61.71875 
-Q 27.734375 32.03125 21.875 2.34375 
-L 13.28125 2.34375 
-z
-" id="SimHei-55"/>
-    </defs>
+    <!-- 0.02 -->
     <g transform="translate(257.846289 125.37793)scale(0.1 -0.1)">
      <use xlink:href="#SimHei-48"/>
      <use x="50" xlink:href="#SimHei-46"/>
      <use x="100" xlink:href="#SimHei-48"/>
-     <use x="150" xlink:href="#SimHei-55"/>
+     <use x="150" xlink:href="#SimHei-50"/>
     </g>
    </g>
    <g id="text_50">
@@ -19859,35 +19880,6 @@ z
    </g>
    <g id="text_61">
     <!-- 0.06 -->
-    <defs>
-     <path d="M 3.515625 19.53125 
-Q 4.296875 30.859375 6.046875 34.765625 
-Q 7.8125 38.671875 11.328125 44.53125 
-L 27.34375 69.53125 
-L 36.328125 69.53125 
-L 19.921875 43.75 
-Q 30.46875 46.484375 36.71875 42.96875 
-Q 42.96875 39.453125 45.109375 34.953125 
-Q 47.265625 30.46875 47.453125 25.1875 
-Q 47.65625 19.921875 45.890625 14.84375 
-Q 44.140625 9.765625 39.640625 5.65625 
-Q 35.15625 1.5625 27.140625 1.171875 
-Q 19.140625 0.78125 13.46875 4.09375 
-Q 7.8125 7.421875 5.65625 13.46875 
-Q 3.515625 19.53125 4.296875 30.859375 
-z
-M 12.5 16.015625 
-Q 19.53125 8.59375 25.390625 8.203125 
-Q 31.25 7.8125 35.15625 12.109375 
-Q 39.0625 16.40625 39.0625 24.609375 
-Q 39.0625 32.8125 34.171875 35.9375 
-Q 29.296875 39.0625 23.234375 38.28125 
-Q 17.1875 37.5 14.453125 32.421875 
-Q 11.71875 27.34375 12.109375 21.671875 
-Q 12.5 16.015625 19.53125 8.59375 
-z
-" id="SimHei-54"/>
-    </defs>
     <g transform="translate(140.732227 183.934961)scale(0.1 -0.1)">
      <use xlink:href="#SimHei-48"/>
      <use x="50" xlink:href="#SimHei-46"/>
@@ -19914,21 +19906,40 @@ z
     </g>
    </g>
    <g id="text_64">
-    <!-- 0.88 -->
+    <!-- 0.90 -->
     <g style="fill:#ffffff;" transform="translate(228.567773 183.934961)scale(0.1 -0.1)">
      <use xlink:href="#SimHei-48"/>
      <use x="50" xlink:href="#SimHei-46"/>
-     <use x="100" xlink:href="#SimHei-56"/>
-     <use x="150" xlink:href="#SimHei-56"/>
+     <use x="100" xlink:href="#SimHei-57"/>
+     <use x="150" xlink:href="#SimHei-48"/>
     </g>
    </g>
    <g id="text_65">
-    <!-- 0.06 -->
+    <!-- 0.04 -->
+    <defs>
+     <path d="M 31.25 17.1875 
+L 1.171875 17.1875 
+L 1.171875 23.828125 
+L 32.8125 69.53125 
+L 38.671875 69.53125 
+L 38.671875 23.828125 
+L 48.046875 23.828125 
+L 48.046875 17.1875 
+L 38.671875 17.1875 
+L 38.671875 2.34375 
+L 31.25 2.34375 
+z
+M 31.25 23.828125 
+L 31.25 54.6875 
+L 9.375 23.828125 
+z
+" id="SimHei-52"/>
+    </defs>
     <g transform="translate(257.846289 183.934961)scale(0.1 -0.1)">
      <use xlink:href="#SimHei-48"/>
      <use x="50" xlink:href="#SimHei-46"/>
      <use x="100" xlink:href="#SimHei-48"/>
-     <use x="150" xlink:href="#SimHei-54"/>
+     <use x="150" xlink:href="#SimHei-52"/>
     </g>
    </g>
    <g id="text_66">
@@ -19996,6 +20007,18 @@ z
    </g>
    <g id="text_73">
     <!-- 0.97 -->
+    <defs>
+     <path d="M 13.28125 2.34375 
+Q 20.3125 32.03125 37.890625 61.328125 
+L 4.296875 61.328125 
+L 4.296875 68.359375 
+L 46.09375 68.359375 
+L 46.09375 61.71875 
+Q 27.734375 32.03125 21.875 2.34375 
+L 13.28125 2.34375 
+z
+" id="SimHei-55"/>
+    </defs>
     <g style="fill:#ffffff;" transform="translate(257.846289 213.213477)scale(0.1 -0.1)">
      <use xlink:href="#SimHei-48"/>
      <use x="50" xlink:href="#SimHei-46"/>
@@ -20393,7 +20416,7 @@ z
   </g>
   <g id="axes_2">
    <g id="patch_7">
-    <path clip-path="url(#p346357699b)" d="M 331.954062 257.13125 
+    <path clip-path="url(#p931704b4fc)" d="M 331.954062 257.13125 
 L 331.954062 256.216296 
 L 331.954062 23.818079 
 L 331.954062 22.903125 
@@ -20411,10 +20434,10 @@ z
       <defs>
        <path d="M 0 0 
 L 3.5 0 
-" id="mc5a752afb2" style="stroke:#262626;stroke-width:0.8;"/>
+" id="m4f83afe558" style="stroke:#262626;stroke-width:0.8;"/>
       </defs>
       <g>
-       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#mc5a752afb2" y="257.13125"/>
+       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#m4f83afe558" y="257.13125"/>
       </g>
      </g>
      <g id="text_84">
@@ -20429,7 +20452,7 @@ L 3.5 0
     <g id="ytick_10">
      <g id="line2d_2">
       <g>
-       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#mc5a752afb2" y="210.285625"/>
+       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#m4f83afe558" y="210.285625"/>
       </g>
      </g>
      <g id="text_85">
@@ -20444,30 +20467,11 @@ L 3.5 0
     <g id="ytick_11">
      <g id="line2d_3">
       <g>
-       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#mc5a752afb2" y="163.44"/>
+       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#m4f83afe558" y="163.44"/>
       </g>
      </g>
      <g id="text_86">
       <!-- 0.4 -->
-      <defs>
-       <path d="M 31.25 17.1875 
-L 1.171875 17.1875 
-L 1.171875 23.828125 
-L 32.8125 69.53125 
-L 38.671875 69.53125 
-L 38.671875 23.828125 
-L 48.046875 23.828125 
-L 48.046875 17.1875 
-L 38.671875 17.1875 
-L 38.671875 2.34375 
-L 31.25 2.34375 
-z
-M 31.25 23.828125 
-L 31.25 54.6875 
-L 9.375 23.828125 
-z
-" id="SimHei-52"/>
-      </defs>
       <g style="fill:#262626;" transform="translate(350.665469 166.8775)scale(0.1 -0.1)">
        <use xlink:href="#SimHei-48"/>
        <use x="50" xlink:href="#SimHei-46"/>
@@ -20478,7 +20482,7 @@ z
     <g id="ytick_12">
      <g id="line2d_4">
       <g>
-       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#mc5a752afb2" y="116.594375"/>
+       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#m4f83afe558" y="116.594375"/>
       </g>
      </g>
      <g id="text_87">
@@ -20493,7 +20497,7 @@ z
     <g id="ytick_13">
      <g id="line2d_5">
       <g>
-       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#mc5a752afb2" y="69.74875"/>
+       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#m4f83afe558" y="69.74875"/>
       </g>
      </g>
      <g id="text_88">
@@ -20508,7 +20512,7 @@ z
     <g id="ytick_14">
      <g id="line2d_6">
       <g>
-       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#mc5a752afb2" y="22.903125"/>
+       <use style="fill:#262626;stroke:#262626;stroke-width:0.8;" x="343.665469" xlink:href="#m4f83afe558" y="22.903125"/>
       </g>
      </g>
      <g id="text_89">
@@ -20521,7 +20525,7 @@ z
      </g>
     </g>
    </g>
-   <image height="234" id="image6223f92646" transform="scale(1 -1)translate(0 -234)" width="12" x="332" xlink:href="data:image/png;base64,
+   <image height="234" id="image8212977ebb" transform="scale(1 -1)translate(0 -234)" width="12" x="332" xlink:href="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAADqCAYAAACWaKR4AAAABHNCSVQICAgIfAhkiAAAAR9JREFUaIHtmFEOwzAIQ9mU+x93H5OS7AjLi2TkkvQbzxhblPX1+c4Z4GkzUH00WB8N1kdjCopoGBDxZr+fMtYNBgjYMO75Gmg0EtIafmOtsDWw04aLzHCsFTTcaKwxUEABDTcaawwQYPjaxVPqWIO8pWF4wuGLLOH8MXSaAmhLQ85QQgM1jkeDEeRMCQL49pYz8M0n30sdGpEyVgjg4dO3pH8pytPqGA1Wf9O6Btg4Hex268bN56eBEaRkCSISWtLffGeGD28NHI2E/3F+4fMzLkGDfGvoNVyGFUCG06jelMGwJciAnd6IBqo3Hav8M3ZC+OQAv/fDkT44ivaLxpk+FHA6OIB9YSrC4NfS6JShgg/6sRbIEo+Gnw+X4f/zA9mr+lUQSMUxAAAAAElFTkSuQmCC" y="-23"/>
    <g id="patch_8">
     <path d="M 331.954062 257.13125 
@@ -20538,10 +20542,10 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p3f92ae8df2">
+  <clipPath id="p613b290e1d">
    <rect height="234.228125" width="234.228125" x="77.535938" y="22.903125"/>
   </clipPath>
-  <clipPath id="p346357699b">
+  <clipPath id="p931704b4fc">
    <rect height="234.228125" width="11.711406" x="331.954062" y="22.903125"/>
   </clipPath>
  </defs>
@@ -20570,47 +20574,77 @@ z
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>cutWords_series = train['content'].apply(lambda x: generate_ngrams(x,2)) # 得到的是pandas series
+bigram = get_vectorize(cutWords_series)
+cross_print_info(MultinomialNB, bigram, y, cv=10)
+10 折交叉验证准确率为 0.465
+cross_print_info(BernoulliNB, bigram, y, cv=10)
+10 折交叉验证准确率为 0.48
+cross_print_info(reg, bigram, y, cv=10)
+10 折交叉验证准确率为 0.489
+cross_print_info(rf, bigram, y, cv=10)
+10 折交叉验证准确率为 0.564
+cross_print_info(model, bigram, y, cv=10)
+10 折交叉验证准确率为 0.53</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3&#20803;&#32452;">3&#20803;&#32452;<a class="anchor-link" href="#3&#20803;&#32452;">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+<pre><code>cutWords_series = train['content'].apply(lambda x: generate_ngrams(x,3)) # 3元组生成
+trigram = get_vectorize(cutWords_series)
+cross_print_info(MultinomialNB, trigram, y, cv=10)
+10 折交叉验证准确率为 0.411
+cross_print_info(BernoulliNB, trigram, y, cv=10)
+10 折交叉验证准确率为 0.363
+cross_print_info(reg, trigram, y, cv=10)
+10 折交叉验证准确率为 0.4
+cross_print_info(rf, trigram, y, cv=10)
+10 折交叉验证准确率为 0.426
+cross_print_info(model, trigram, y, cv=10)
+10 折交叉验证准确率为 0.439</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#32467;&#35770;">&#32467;&#35770;<a class="anchor-link" href="#&#32467;&#35770;">&#182;</a></h1><p>多元组不如单个词词频分类效果好</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Stacking">Stacking<a class="anchor-link" href="#Stacking">&#182;</a></h1>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cutWords_series</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">generate_ngrams</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># 得到的是pandas series</span>
-<span class="n">bigram</span> <span class="o">=</span> <span class="n">get_vectorize</span><span class="p">(</span><span class="n">cutWords_series</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">MultinomialNB</span><span class="p">,</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.512
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -20620,7 +20654,67 @@ z
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">BernoulliNB</span><span class="p">,</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">KFold</span>
+<span class="k">def</span> <span class="nf">get_stacking</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">n_folds</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    这个函数是stacking的核心，使用交叉验证的方法得到次级训练集</span>
+<span class="sd">    x_train, y_train, x_test 的值应该为numpy里面的数组类型 numpy.ndarray .</span>
+<span class="sd">    如果输入为pandas的DataFrame类型则会把报错&quot;&quot;&quot;</span>
+    <span class="n">train_num</span><span class="p">,</span> <span class="n">test_num</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">second_level_train_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">train_num</span><span class="p">,))</span>
+    <span class="n">second_level_test_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">test_num</span><span class="p">,))</span>
+    <span class="n">test_nfolds_sets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">test_num</span><span class="p">,</span> <span class="n">n_folds</span><span class="p">))</span>
+    <span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_folds</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,(</span><span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">x_train</span><span class="p">)):</span>
+        <span class="n">x_tra</span><span class="p">,</span> <span class="n">y_tra</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">]</span>
+        <span class="n">x_tst</span><span class="p">,</span> <span class="n">y_tst</span> <span class="o">=</span>  <span class="n">x_train</span><span class="p">[</span><span class="n">test_index</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_tra</span><span class="p">,</span> <span class="n">y_tra</span><span class="p">)</span>
+
+        <span class="n">second_level_train_set</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_tst</span><span class="p">)</span>
+        <span class="n">test_nfolds_sets</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+    <span class="n">second_level_test_set</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">test_nfolds_sets</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">second_level_train_set</span><span class="p">,</span> <span class="n">second_level_test_set</span>
+
+<span class="c1">#我们这里使用5个分类算法，为了体现stacking的思想，就不加参数了</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">AdaBoostClassifier</span><span class="p">,</span>
+                              <span class="n">GradientBoostingClassifier</span><span class="p">,</span> <span class="n">ExtraTreesClassifier</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">lightgbm</span> <span class="k">import</span> <span class="n">LGBMClassifier</span>
+
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+<span class="n">adb_model</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">()</span>
+<span class="n">gdbc_model</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">()</span>
+<span class="n">et_model</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">()</span>
+<span class="n">lgbm_model</span> <span class="o">=</span> <span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="s1">&#39;multiclass&#39;</span><span class="p">)</span>
+
+<span class="c1">#在这里我们使用train_test_split来人为的制造一些数据</span>
+<span class="c1">#from sklearn.datasets import load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
+<span class="c1">#iris = load_iris()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">train_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">unigramnp</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">train_sets</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">test_sets</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="p">[</span><span class="n">rf_model</span><span class="p">,</span> <span class="n">adb_model</span><span class="p">,</span> <span class="n">gdbc_model</span><span class="p">,</span> <span class="n">et_model</span><span class="p">,</span> <span class="n">model</span><span class="p">]:</span>
+    <span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">get_stacking</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">test_x</span><span class="p">)</span>
+    <span class="n">train_sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span>
+    <span class="n">test_sets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_set</span><span class="p">)</span>
+
+<span class="n">meta_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">result_set</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">result_set</span> <span class="ow">in</span> <span class="n">train_sets</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">meta_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y_test_set</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">y_test_set</span> <span class="ow">in</span> <span class="n">test_sets</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#使用决策树作为我们的次级分类器</span>
+<span class="c1">#from sklearn.tree import DecisionTreeClassifier</span>
+<span class="c1">#dt_model = DecisionTreeClassifier()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">meta_train</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+<span class="n">df_predict</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">meta_test</span><span class="p">)</span>
+<span class="c1">#test_y</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;训练准确率为&#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">df_predict</span><span class="p">),</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -20636,31 +20730,14 @@ z
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.479
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\ProgramData\Anaconda3\lib\site-packages\sklearn\ensemble\forest.py:245: FutureWarning: The default value of n_estimators will change from 10 in version 0.20 to 100 in 0.22.
+  &#34;10 in version 0.20 to 100 in 0.22.&#34;, FutureWarning)
+C:\ProgramData\Anaconda3\lib\site-packages\sklearn\ensemble\forest.py:245: FutureWarning: The default value of n_estimators will change from 10 in version 0.20 to 100 in 0.22.
+  &#34;10 in version 0.20 to 100 in 0.22.&#34;, FutureWarning)
 </pre>
 </div>
 </div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
 
 <div class="output_area">
 
@@ -20668,7 +20745,7 @@ z
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.472
+<pre>训练准确率为 0.535
 </pre>
 </div>
 </div>
@@ -20676,252 +20753,6 @@ z
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.505
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">bigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.521
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="3&#20803;&#32452;">3&#20803;&#32452;<a class="anchor-link" href="#3&#20803;&#32452;">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cutWords_series</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">generate_ngrams</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># 3元组生成</span>
-<span class="n">trigram</span> <span class="o">=</span> <span class="n">get_vectorize</span><span class="p">(</span><span class="n">cutWords_series</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">MultinomialNB</span><span class="p">,</span> <span class="n">trigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.426
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">BernoulliNB</span><span class="p">,</span> <span class="n">trigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.385
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">trigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.419
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">trigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.434
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">trigram</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.42
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#32467;&#35770;">&#32467;&#35770;<a class="anchor-link" href="#&#32467;&#35770;">&#182;</a></h1><p>多元组不如单个词词频分类效果好</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">

@@ -20,13 +20,35 @@ from sklearn.model_selection import cross_val_score
 
 stopword_list = [k.strip() for k in open('../data/stopword.txt', encoding='utf8').readlines() if k.strip() != '']
 # 加入新的停用词
-stop_word_new = ['一','二','三','四','五','六','七','八','九','十','不','未','互联网','网络','服务']
+stop_word_new = ['一','二','三','四','五','六','七','八','九','十','未']
 stopword_list.extend(stop_word_new)
 jieba.add_word('区块链')
-jieba.add_word('微博客')
-jieba.add_word('根服务器')
-jieba.del_word('监督管理')
+jieba.add_word('信息管理')
+#jieba.add_word('微博客')
+#jieba.add_word('关键信息')
+#jieba.add_word('区块链信息')
+#jieba.add_word('管理办法')
+#jieba.del_word('监督管理')
+#jieba.add_word('主管部门')
+###################################################################下面是尝试区
+#jieba.add_word('遵守')
+#jieba.add_word('拒不')
+#jieba.add_word('注册服务')
+#jieba.suggest_freq('机构应当', True)
+#jieba.add_word('危害网络安全')
+#jieba.add_word('网络运营者')
+#jieba.suggest_freq('运营者', True)
 
+##################################################################下面是丢弃区
+#jieba.add_word('法人组织')
+#jieba.add_word('有序发展')
+#jieba.add_word('管理办法')
+#jieba.add_word('部门应当')
+#jieba.add_word('机构应当')
+#jieba.del_word('网络安全')
+#jieba.add_word('根服务器')
+#jieba.add_word('法规规定')
+#########################################################################
 def get_vectorize(wordlist,vector = 'CountVectorizer',feats =150):
     '''
     得到特征X矩阵
@@ -60,6 +82,14 @@ def get_cutword(string):
     combined = ' '.join(cutWords)
     return combined
 
+def get_cutword0(string):
+    '''
+    jieba分词,正则替换数字
+    '''
+    string = re.sub("[0-9]"," ",string) # 正则替换数字
+    cutWords = [k for k in jieba.cut(string) if k != '' if k not in stopword_list]
+    return cutWords
+
 
 def generate_ngrams(text, n_gram=2):
     '''
@@ -82,7 +112,7 @@ def plot_count(df,n):
     uplot.sort_values(by = 'Score',inplace = True,ascending=True)
     uplot.plot.barh(alpha=0.7,figsize=(6,8))
     
-def plot_count_by(df, row, n,figsize=(10,12)):
+def plot_count_by(df, row, n,figsize=(10,15)):
     '''
     分面绘制条形图
     '''
@@ -132,6 +162,5 @@ def cross_print_info(model,x,y,cv): # 模型, x, y, 交叉验证数
     print(cv,'折交叉验证准确率为',round(cvscore.mean(),3))
     
 
-    
 
 ```
