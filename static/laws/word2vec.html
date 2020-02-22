@@ -16438,7 +16438,7 @@ div#notebook {
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>Building prefix dict from the default dictionary ...
 Loading model from cache C:\Users\xsong\AppData\Local\Temp\jieba.cache
-Loading model cost 0.712 seconds.
+Loading model cost 0.856 seconds.
 Prefix dict has been built succesfully.
 </pre>
 </div>
@@ -16454,7 +16454,7 @@ Prefix dict has been built succesfully.
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 训练集和停用词</span>
-<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/TrainSet.csv&quot;</span><span class="p">,</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gb18030&#39;</span><span class="p">)</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/TrainSet.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -16486,7 +16486,7 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(378, 2)</pre>
+<pre>(330, 2)</pre>
 </div>
 
 </div>
@@ -16665,7 +16665,7 @@ C:\ProgramData\Anaconda3\lib\site-packages\ipykernel_launcher.py:4: DeprecationW
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(378, 100)</pre>
+<pre>(330, 100)</pre>
 </div>
 
 </div>
@@ -16712,7 +16712,7 @@ C:\ProgramData\Anaconda3\lib\site-packages\ipykernel_launcher.py:4: DeprecationW
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.352
+<pre>10 折交叉验证准确率为 0.335
 </pre>
 </div>
 </div>
@@ -16745,7 +16745,7 @@ C:\ProgramData\Anaconda3\lib\site-packages\ipykernel_launcher.py:4: DeprecationW
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.41
+<pre>10 折交叉验证准确率为 0.339
 </pre>
 </div>
 </div>
@@ -16779,7 +16779,7 @@ C:\ProgramData\Anaconda3\lib\site-packages\ipykernel_launcher.py:4: DeprecationW
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.447
+<pre>10 折交叉验证准确率为 0.404
 </pre>
 </div>
 </div>
@@ -16798,7 +16798,7 @@ C:\ProgramData\Anaconda3\lib\site-packages\ipykernel_launcher.py:4: DeprecationW
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span>
@@ -16892,6 +16892,10 @@ C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarnin
   &#34;avoid this warning.&#34;, FutureWarning)
 C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarning: The default value of gamma will change from &#39;auto&#39; to &#39;scale&#39; in version 0.22 to account better for unscaled features. Set gamma explicitly to &#39;auto&#39; or &#39;scale&#39; to avoid this warning.
   &#34;avoid this warning.&#34;, FutureWarning)
+C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarning: The default value of gamma will change from &#39;auto&#39; to &#39;scale&#39; in version 0.22 to account better for unscaled features. Set gamma explicitly to &#39;auto&#39; or &#39;scale&#39; to avoid this warning.
+  &#34;avoid this warning.&#34;, FutureWarning)
+C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarning: The default value of gamma will change from &#39;auto&#39; to &#39;scale&#39; in version 0.22 to account better for unscaled features. Set gamma explicitly to &#39;auto&#39; or &#39;scale&#39; to avoid this warning.
+  &#34;avoid this warning.&#34;, FutureWarning)
 </pre>
 </div>
 </div>
@@ -16902,7 +16906,7 @@ C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarnin
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>训练准确率为 0.316
+<pre>训练准确率为 0.192
 </pre>
 </div>
 </div>
@@ -16914,10 +16918,6 @@ C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarnin
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarning: The default value of gamma will change from &#39;auto&#39; to &#39;scale&#39; in version 0.22 to account better for unscaled features. Set gamma explicitly to &#39;auto&#39; or &#39;scale&#39; to avoid this warning.
-  &#34;avoid this warning.&#34;, FutureWarning)
-C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarning: The default value of gamma will change from &#39;auto&#39; to &#39;scale&#39; in version 0.22 to account better for unscaled features. Set gamma explicitly to &#39;auto&#39; or &#39;scale&#39; to avoid this warning.
-  &#34;avoid this warning.&#34;, FutureWarning)
-C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarning: The default value of gamma will change from &#39;auto&#39; to &#39;scale&#39; in version 0.22 to account better for unscaled features. Set gamma explicitly to &#39;auto&#39; or &#39;scale&#39; to avoid this warning.
   &#34;avoid this warning.&#34;, FutureWarning)
 C:\ProgramData\Anaconda3\lib\site-packages\sklearn\svm\base.py:193: FutureWarning: The default value of gamma will change from &#39;auto&#39; to &#39;scale&#39; in version 0.22 to account better for unscaled features. Set gamma explicitly to &#39;auto&#39; or &#39;scale&#39; to avoid this warning.
   &#34;avoid this warning.&#34;, FutureWarning)

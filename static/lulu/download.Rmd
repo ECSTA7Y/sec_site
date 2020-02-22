@@ -42,7 +42,18 @@ MagnetDL: <https://www.magnetdl.me/>
 
 The Pirate Bay: <https://thepiratebay.org/>
 
+# 其他
 
+
+twitter视频下载器: <https://www.savetweetvid.com/zh>
+
+Facebook视频下载器: <https://www.getfvid.com/zh>
+
+在线下载Instagram照片和视频: <https://www.instaloadgram.com/zh/>
+
+站点地图生成工具: <https://www.xml-sitemaps.com/>
+
+---
 
 <span id="<Your/Path/Name>" class="leancloud_visitors" data-flag-title="Your Article Title">
     <em class="post-meta-item-text">阅读量 </em>
