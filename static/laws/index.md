@@ -1,7 +1,7 @@
 ---
 title: '法律条文文本分类'
 author: " "
-date: "2020/2/7"
+date: "2020/2/25"
 slug: index
 ---
 
@@ -22,6 +22,9 @@ slug: index
 
 [word2vec](./word2vec)
 
+# 测试集预测
+
+[test_predict](./test_predict)
 
 <span id="<Your/Path/Name>" class="leancloud_visitors" data-flag-title="Your Article Title">
     <em class="post-meta-item-text">阅读量 </em>

@@ -1,7 +1,7 @@
 ---
 title: "useful_tools.py"
 author: " "
-date: "2020/2/9"
+date: '`r Sys.Date()`'
 output: html_document
 ---
 
@@ -156,10 +156,13 @@ def plot_confusion_matrix(cm, classes,
     
 def cross_print_info(model,x,y,cv): # 模型, x, y, 交叉验证数
     '''
-    交叉验证分数打印
+    分数打印，可选交叉验证法或Bootstrap方法
     '''
-    cvscore = cross_val_score(model, x, y, cv=cv)
-    print(cv,'折交叉验证准确率为',round(cvscore.mean(),3))
+    cvscore = cross_val_score(model, x, y, cv = cv)
+    if isinstance(cv,int):
+        print(cv,'折交叉验证准确率为',round(cvscore.mean(),3))
+    else:
+        print('Bootstrap抽样准确率为',round(cvscore.mean(),3))
     
 
 
