@@ -11,7 +11,7 @@
 
 <meta name="author" content />
 
-<meta name="date" content="2020-02-25" />
+<meta name="date" content="2020-04-06" />
 
 <title>useful_tools.py</title>
 
@@ -364,12 +364,13 @@ summary {
 
 
 <h1 class="title toc-ignore">useful_tools.py</h1>
-<h4 class="date">2020-02-25</h4>
+<h4 class="date">2020-04-06</h4>
 
 </div>
 
 
-<pre class="python"><code>import re
+<pre class="python"><code>
+import re
 import numpy as np
 import pandas as pd
 import jieba
@@ -378,39 +379,38 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import HashingVectorizer
 import itertools
+import pickle 
 from sklearn.model_selection import cross_val_score
 
 stopword_list = [k.strip() for k in open(&#39;../data/stopword.txt&#39;, encoding=&#39;utf8&#39;).readlines() if k.strip() != &#39;&#39;]
 # 加入新的停用词
-stop_word_new = [&#39;一&#39;,&#39;二&#39;,&#39;三&#39;,&#39;四&#39;,&#39;五&#39;,&#39;六&#39;,&#39;七&#39;,&#39;八&#39;,&#39;九&#39;,&#39;十&#39;,&#39;未&#39;]
+stop_word_new = [&#39;一&#39;,&#39;二&#39;,&#39;三&#39;,&#39;四&#39;,&#39;五&#39;,&#39;六&#39;,&#39;七&#39;,&#39;八&#39;,&#39;九&#39;,&#39;十&#39;,&#39;不&#39;,&#39;未&#39;]
 stopword_list.extend(stop_word_new)
+stopword_list.remove(&#39;是&#39;)
+stopword_list.remove(&#39;为了&#39;)
 jieba.add_word(&#39;区块链&#39;)
-jieba.add_word(&#39;信息管理&#39;)
+jieba.add_word(&#39;微博客&#39;)
+jieba.add_word(&#39;根服务器&#39;)
+jieba.add_word(&#39;所称&#39;)
+jieba.add_word(&#39;是指&#39;)
+jieba.add_word(&#39;为了&#39;)
+jieba.suggest_freq(&#39;为了&#39;, True)
+jieba.suggest_freq(&#39;本规定所称&#39;, True)
+jieba.suggest_freq(&#39;是指&#39;, True)
+jieba.add_word(&#39;提供者应当&#39;)
+jieba.add_word(&#39;鼓励&#39;)
+jieba.add_word(&#39;应当遵守&#39;)
+jieba.add_word(&#39;适用&#39;)
+#jieba.add_word(&#39;监督管理&#39;)
 #jieba.add_word(&#39;微博客&#39;)
 #jieba.add_word(&#39;关键信息&#39;)
 #jieba.add_word(&#39;区块链信息&#39;)
 #jieba.add_word(&#39;管理办法&#39;)
 #jieba.del_word(&#39;监督管理&#39;)
 #jieba.add_word(&#39;主管部门&#39;)
-###################################################################下面是尝试区
-#jieba.add_word(&#39;遵守&#39;)
-#jieba.add_word(&#39;拒不&#39;)
-#jieba.add_word(&#39;注册服务&#39;)
-#jieba.suggest_freq(&#39;机构应当&#39;, True)
-#jieba.add_word(&#39;危害网络安全&#39;)
-#jieba.add_word(&#39;网络运营者&#39;)
-#jieba.suggest_freq(&#39;运营者&#39;, True)
 
-##################################################################下面是丢弃区
-#jieba.add_word(&#39;法人组织&#39;)
-#jieba.add_word(&#39;有序发展&#39;)
-#jieba.add_word(&#39;管理办法&#39;)
-#jieba.add_word(&#39;部门应当&#39;)
-#jieba.add_word(&#39;机构应当&#39;)
-#jieba.del_word(&#39;网络安全&#39;)
-#jieba.add_word(&#39;根服务器&#39;)
-#jieba.add_word(&#39;法规规定&#39;)
-#########################################################################
+
+
 def get_vectorize(wordlist,vector = &#39;CountVectorizer&#39;,feats =150):
     &#39;&#39;&#39;
     得到特征X矩阵
@@ -433,8 +433,6 @@ def get_vectorize(wordlist,vector = &#39;CountVectorizer&#39;,feats =150):
         word_matrix = pd.DataFrame(cv_fit)
         return word_matrix
         
-    
-
 def get_cutword(string):
     &#39;&#39;&#39;
     jieba分词,正则替换数字
@@ -443,14 +441,6 @@ def get_cutword(string):
     cutWords = [k for k in jieba.cut(string) if k != &#39;&#39; if k not in stopword_list]
     combined = &#39; &#39;.join(cutWords)
     return combined
-
-def get_cutword0(string):
-    &#39;&#39;&#39;
-    jieba分词,正则替换数字
-    &#39;&#39;&#39;
-    string = re.sub(&quot;[0-9]&quot;,&quot; &quot;,string) # 正则替换数字
-    cutWords = [k for k in jieba.cut(string) if k != &#39;&#39; if k not in stopword_list]
-    return cutWords
 
 
 def generate_ngrams(text, n_gram=2):
@@ -474,7 +464,7 @@ def plot_count(df,n):
     uplot.sort_values(by = &#39;Score&#39;,inplace = True,ascending=True)
     uplot.plot.barh(alpha=0.7,figsize=(6,8))
     
-def plot_count_by(df, row, n,figsize=(10,15)):
+def plot_count_by(df, row, n,figsize=(10,12)):
     &#39;&#39;&#39;
     分面绘制条形图
     &#39;&#39;&#39;
@@ -526,8 +516,59 @@ def cross_print_info(model,x,y,cv): # 模型, x, y, 交叉验证数
     else:
         print(&#39;Bootstrap抽样准确率为&#39;,round(cvscore.mean(),3))
     
+def match_single(x, word):
+    &#39;&#39;&#39;
+    输入分词后的语料库和想匹配的单词，返回包含这个单词的对象
+    &#39;&#39;&#39;
+    if word in x:
+        x = word
+    else:
+        x = &#39;&#39;
+    return x
 
-</code></pre>
+def add_single_col(og_matrix ,ogcolumn, new_word):
+    &#39;&#39;&#39;
+    增加新词列,返回增加后的DTM. 所有行都不包含这个词时返回原矩阵
+    &#39;&#39;&#39; 
+    cutWords = ogcolumn.apply(lambda x: get_cutword(x))
+    if new_word in og_matrix.columns:
+        return og_matrix
+    else:
+        try:
+            newwdvec = cutWords.apply(lambda x: match_single(x, new_word)) #得到想加入的列
+            new_max = get_vectorize(newwdvec) # 得到单独一列DTM
+            new_dtm = pd.concat([og_matrix, new_max], axis = 1, join=&#39;inner&#39;) 
+            return new_dtm
+        except ValueError:
+            print(&#39;抱歉，无法搜索到这个词&#39;)
+            return og_matrix
+        
+
+pkl_file = open(&#39;../classifier/colname.pkl&#39;,&#39;rb&#39;)    ## 以二进制方式打开文件
+train_col = pickle.load(pkl_file) 
+def consist_train_test(test):
+    &#39;&#39;&#39;
+    使得测试集列名顺序与训练集一致
+    &#39;&#39;&#39;
+    new_df = pd.DataFrame()
+    for i in train_col:
+        if i in test.columns:
+            new_df[i] = test[i]
+        else:
+            new_df[i] = 0
+    new_df.fillna(0, inplace = True)
+    order = train_col
+    new_df[order]
+    return new_df
+
+def add_words(mat, ogcolumn):
+    &#39;&#39;&#39;
+    用于预测新数据，集成了最终模型需要加入的四个词
+    &#39;&#39;&#39;
+    cidian = [&#39;所称&#39;, &#39;是指&#39;, &#39;为了&#39;, &#39;鼓励&#39;, &#39;应当遵守&#39;]
+    for i in cidian:
+        mat = add_single_col(mat , ogcolumn, i)
+    return mat</code></pre>
 
 
 

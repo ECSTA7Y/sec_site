@@ -16446,7 +16446,7 @@ div#notebook {
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>Building prefix dict from the default dictionary ...
 Loading model from cache C:\Users\xsong\AppData\Local\Temp\jieba.cache
-Loading model cost 0.930 seconds.
+Loading model cost 0.741 seconds.
 Prefix dict has been built succesfully.
 </pre>
 </div>
@@ -16519,7 +16519,7 @@ Prefix dict has been built succesfully.
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="k">import</span> <span class="n">MultinomialNB</span>
-<span class="n">MultinomialNB</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span>
+<span class="n">MultinomialNB</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span> <span class="c1"># 朴素贝叶斯</span>
 <span class="n">cross_print_info</span><span class="p">(</span><span class="n">MultinomialNB</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
@@ -16537,7 +16537,7 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.735
+<pre>10 折交叉验证准确率为 0.706
 </pre>
 </div>
 </div>
@@ -16552,7 +16552,7 @@ Prefix dict has been built succesfully.
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="k">import</span> <span class="n">BernoulliNB</span>
-<span class="n">BernoulliNB</span> <span class="o">=</span> <span class="n">BernoulliNB</span><span class="p">()</span>
+<span class="n">BernoulliNB</span> <span class="o">=</span> <span class="n">BernoulliNB</span><span class="p">()</span> <span class="c1"># 朴素贝叶斯</span>
 <span class="n">cross_print_info</span><span class="p">(</span><span class="n">BernoulliNB</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
@@ -16570,7 +16570,7 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.729
+<pre>10 折交叉验证准确率为 0.721
 </pre>
 </div>
 </div>
@@ -16586,8 +16586,167 @@ Prefix dict has been built succesfully.
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">AdaBoostClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="k">import</span> <span class="n">DecisionTreeClassifier</span>
-<span class="n">reg</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">DecisionTreeClassifier</span><span class="p">())</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">DecisionTreeClassifier</span><span class="p">())</span> <span class="c1"># AdaBoost</span>
 <span class="n">cross_print_info</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10 折交叉验证准确率为 0.634
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span> <span class="c1"># 随机森林</span>
+<span class="n">cross_print_info</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10 折交叉验证准确率为 0.732
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># XGBoost</span>
+<span class="n">cross_print_info</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10 折交叉验证准确率为 0.713
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>基准：rf0.686 xgb0.7</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">SVC</span>
+<span class="n">svmc</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span> <span class="c1"># 支持向量机</span>
+<span class="n">cross_print_info</span><span class="p">(</span><span class="n">svmc</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10 折交叉验证准确率为 0.156
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Hashing&#21521;&#37327;&#21270;">Hashing&#21521;&#37327;&#21270;<a class="anchor-link" href="#Hashing&#21521;&#37327;&#21270;">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cutWords_series</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_cutword</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># 得到的是pandas series</span>
+<span class="n">Hash</span> <span class="o">=</span> <span class="n">get_vectorize</span><span class="p">(</span><span class="n">cutWords_series</span><span class="p">,</span><span class="n">vector</span> <span class="o">=</span> <span class="s1">&#39;HashingVectorizer&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">Hash</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># AdaBoost</span>
 </pre></div>
 
     </div>
@@ -16615,167 +16774,10 @@ Prefix dict has been built succesfully.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
-<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">cross_print_info</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.737
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">xgboost</span> <span class="k">as</span> <span class="nn">xgb</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">cross_print_info</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.704
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>基准：rf0.686 xgb0.7</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Hashing&#21521;&#37327;&#21270;">Hashing&#21521;&#37327;&#21270;<a class="anchor-link" href="#Hashing&#21521;&#37327;&#21270;">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cutWords_series</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">get_cutword</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="c1"># 得到的是pandas series</span>
-<span class="n">Hash</span> <span class="o">=</span> <span class="n">get_vectorize</span><span class="p">(</span><span class="n">cutWords_series</span><span class="p">,</span><span class="n">vector</span> <span class="o">=</span> <span class="s1">&#39;HashingVectorizer&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">Hash</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.544
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">Hash</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.69
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">Hash</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">rf</span><span class="p">,</span> <span class="n">Hash</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 随机森林</span>
 </pre></div>
 
     </div>
@@ -16792,7 +16794,69 @@ Prefix dict has been built succesfully.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>10 折交叉验证准确率为 0.633
+<pre>10 折交叉验证准确率为 0.721
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">Hash</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># XGBoost</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10 折交叉验证准确率为 0.661
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cross_print_info</span><span class="p">(</span><span class="n">svmc</span><span class="p">,</span> <span class="n">Hash</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># 支持向量机</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10 折交叉验证准确率为 0.146
 </pre>
 </div>
 </div>
@@ -16804,7 +16868,7 @@ Prefix dict has been built succesfully.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#32467;&#35770;">&#32467;&#35770;<a class="anchor-link" href="#&#32467;&#35770;">&#182;</a></h1><p>Tf-Idf取得了很高的准确率,高过了词频方法。Hashing方法表现较差。</p>
+<h1 id="&#32467;&#35770;">&#32467;&#35770;<a class="anchor-link" href="#&#32467;&#35770;">&#182;</a></h1><p>Tf-Idf取得了很高的准确率,但并未超过词频方法。Hashing方法表现较差。集成学习模型表现较好，单个模型如朴素贝叶斯、支持向量机等表现远远不如Bagging或Boosting。</p>
 
 </div>
 </div>

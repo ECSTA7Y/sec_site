@@ -3,11 +3,15 @@ title: '法律条文文本分类'
 author: " "
 date: "2020/2/25"
 slug: index
+output:
+  bookdown::html_document2:
+    toc: true
+    theme: readable
 ---
 
 [github](https://github.com/songxxiao/law_learning)
 
-[useful_tools.py](./useful_tools)
+自编函数模块：[useful_tools.py](./useful_tools)
 
 # 数据探索
 
@@ -15,21 +19,19 @@ slug: index
 
 # 数据训练，交叉验证
 
-
 [词频](./cross_validate)
 
 [Tf-Idf](./Tf_Idf_Vectorizer)
 
 [word2vec](./word2vec)
 
+[Bert](https://www.kaggle.com/rikdifos/keras-bert-using-tensorflow-hub)
+
 # 测试集预测
 
 [test_predict](./test_predict)
 
-<span id="<Your/Path/Name>" class="leancloud_visitors" data-flag-title="Your Article Title">
-    <em class="post-meta-item-text">阅读量 </em>
-    <i class="leancloud-visitors-count">1000000</i>
-</span>
+
 
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 
