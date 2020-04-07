@@ -5,7 +5,7 @@ date: "2020/2/25"
 slug: index
 output:
   bookdown::html_document2:
-    toc: true
+    toc: false
     theme: readable
 ---
 
