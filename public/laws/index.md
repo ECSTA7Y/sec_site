@@ -1,17 +1,19 @@
 ---
 title: '法律条文文本分类'
-author: " "
+author: ' '
 date: "2020/2/25"
 slug: index
 output:
   bookdown::html_document2:
-    toc: true
+    toc: false
     theme: readable
 ---
 
-[github](https://github.com/songxxiao/law_learning)
+[github repo](https://github.com/songxxiao/law_learning)
 
-自编函数模块：[useful_tools.py](./useful_tools)
+自编函数模块：[useful_tools.py](https://github.com/songxxiao/law_learning/blob/master/code/useful_tools.py)
+
+命令行程序下载：[lawPredict](https://github.com/songxxiao/law_learning/releases)
 
 # 数据探索
 
@@ -19,19 +21,17 @@ output:
 
 # 数据训练，交叉验证
 
-[词频](./cross_validate)
+[词频向量化](./cross_validate)
 
-[Tf-Idf](./Tf_Idf_Vectorizer)
+[Tf-Idf向量化](./Tf_Idf_Vectorizer)
 
-[word2vec](./word2vec)
+[word2vec向量化](./word2vec)
 
-[Bert](https://www.kaggle.com/rikdifos/keras-bert-using-tensorflow-hub)
+[Bert向量化](https://www.kaggle.com/rikdifos/keras-bert-using-tensorflow-hub)
 
 # 测试集预测
 
 [test_predict](./test_predict)
-
-
 
 <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 

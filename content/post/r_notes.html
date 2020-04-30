@@ -2,6 +2,9 @@
 title: Useful R Notes
 date: "2020-01-05"
 slug: r_notes
+html_document:
+    toc: true
+    highlight: tango
 ---
 
 
@@ -9,26 +12,27 @@ slug: r_notes
 <p><a href="https://adv-r.hadley.nz/">Advanced R 2nd edition</a></p>
 <p>这个文章记录我对R的一些练习重点</p>
 <p>R 中的所有标准运算符都是函数！包括<code>+</code>、<code>$</code>、<code>[</code>、<code>(</code></p>
-<pre class="r"><code>for (i in 1:2) print(i)</code></pre>
-<pre><code>#&gt; [1] 1
-#&gt; [1] 2</code></pre>
-<pre class="r"><code>`for`(i, 1:2, print(i))</code></pre>
-<pre><code>#&gt; [1] 1
-#&gt; [1] 2</code></pre>
-<pre class="r"><code>{ print(1); print(2); print(3) }</code></pre>
-<pre><code>#&gt; [1] 1
+<pre class="r"><code>for (i in 1:2) print(i)
+#&gt; [1] 1
 #&gt; [1] 2
-#&gt; [1] 3</code></pre>
-<pre class="r"><code>`{`(print(1), print(2), print(3))</code></pre>
-<pre><code>#&gt; [1] 1
+`for`(i, 1:2, print(i))
+#&gt; [1] 1
+#&gt; [1] 2
+
+{ print(1); print(2); print(3) }
+#&gt; [1] 1
+#&gt; [1] 2
+#&gt; [1] 3
+`{`(print(1), print(2), print(3))
+#&gt; [1] 1
 #&gt; [1] 2
 #&gt; [1] 3</code></pre>
 <p>2020年1月7日阅读<a href="http://adv-r.had.co.nz/Introduction.html">Advanced R</a> 关于函数的章节。</p>
 <p><code>do.call</code>可以进行函数求值：</p>
-<pre class="r"><code>do.call(mean, list(1:10, na.rm = TRUE))</code></pre>
-<pre><code>#&gt; [1] 5.5</code></pre>
-<pre class="r"><code>mean(1:10, na.rm = TRUE)</code></pre>
-<pre><code>#&gt; [1] 5.5</code></pre>
+<pre class="r"><code>do.call(mean, list(1:10, na.rm = TRUE))
+#&gt; [1] 5.5
+mean(1:10, na.rm = TRUE)
+#&gt; [1] 5.5</code></pre>
 <p>R 函数默认惰性求值</p>
 <p>Infix functions 中缀函数</p>
 <div id="install-r-on-ubuntu-18.04" class="section level3">
@@ -65,9 +69,9 @@ sudo apt install r-base</code></pre>
   }
 }
 
-(switch(&quot;c&quot;, a = 1, b = 2))</code></pre>
-<pre><code>#&gt; NULL</code></pre>
-<pre class="r"><code>#&gt; NULL
+(switch(&quot;c&quot;, a = 1, b = 2))
+#&gt; NULL
+#&gt; NULL
 legs &lt;- function(x) {
   switch(x,
     cow = ,
@@ -79,12 +83,12 @@ legs &lt;- function(x) {
     stop(&quot;Unknown input&quot;)
   )
 }
-legs(&quot;cow&quot;)</code></pre>
-<pre><code>#&gt; [1] 4</code></pre>
-<pre class="r"><code>#&gt; [1] 4
-legs(&quot;dog&quot;)</code></pre>
-<pre><code>#&gt; [1] 4</code></pre>
-<pre class="r"><code>#&gt; [1] 4</code></pre>
+legs(&quot;cow&quot;)
+#&gt; [1] 4
+#&gt; [1] 4
+legs(&quot;dog&quot;)
+#&gt; [1] 4
+#&gt; [1] 4</code></pre>
 <p>for 循环的3个陷阱：</p>
 <ul>
 <li>提前设定循环结果存储的对象，使用<code>vector</code>函数</li>
@@ -102,27 +106,41 @@ out &lt;- vector(&quot;list&quot;, length(means))
 for (i in seq_along(means)) {
   out[[i]] &lt;- rnorm(10, means[[i]])
 }
-out</code></pre>
-<pre><code>#&gt; list()</code></pre>
+out
+#&gt; list()</code></pre>
 <ul>
 <li>当遇到S3向量时，for循环会剥离一些属性，此时还是需要使用<code>seq_along</code>：</li>
 </ul>
 <pre class="r"><code>xs &lt;- as.Date(c(&quot;2020-01-01&quot;, &quot;2010-01-01&quot;))
-seq_along(xs)</code></pre>
-<pre><code>#&gt; [1] 1 2</code></pre>
-<pre class="r"><code>for (i in seq_along(xs)) {
+seq_along(xs)
+#&gt; [1] 1 2
+for (i in seq_along(xs)) {
   print(xs[[i]])
-}</code></pre>
-<pre><code>#&gt; [1] &quot;2020-01-01&quot;
+}
+#&gt; [1] &quot;2020-01-01&quot;
 #&gt; [1] &quot;2010-01-01&quot;</code></pre>
 </div>
 <div id="数据框索引" class="section level1">
 <h1>数据框索引</h1>
 <pre class="r"><code>df &lt;- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
 
-str(df[&quot;x&quot;])</code></pre>
-<pre><code>#&gt; &#39;data.frame&#39;:    3 obs. of  1 variable:
-#&gt;  $ x: int  1 2 3</code></pre>
-<pre class="r"><code>str(df[, &quot;x&quot;])</code></pre>
-<pre><code>#&gt;  int [1:3] 1 2 3</code></pre>
+str(df[&quot;x&quot;])
+#&gt; &#39;data.frame&#39;:    3 obs. of  1 variable:
+#&gt;  $ x: int  1 2 3
+
+str(df[, &quot;x&quot;])
+#&gt;  int [1:3] 1 2 3</code></pre>
+<pre class="r"><code>library(magrittr)
+iris %&gt;% head(10)
+#&gt;    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+#&gt; 1           5.1         3.5          1.4         0.2  setosa
+#&gt; 2           4.9         3.0          1.4         0.2  setosa
+#&gt; 3           4.7         3.2          1.3         0.2  setosa
+#&gt; 4           4.6         3.1          1.5         0.2  setosa
+#&gt; 5           5.0         3.6          1.4         0.2  setosa
+#&gt; 6           5.4         3.9          1.7         0.4  setosa
+#&gt; 7           4.6         3.4          1.4         0.3  setosa
+#&gt; 8           5.0         3.4          1.5         0.2  setosa
+#&gt; 9           4.4         2.9          1.4         0.2  setosa
+#&gt; 10          4.9         3.1          1.5         0.1  setosa</code></pre>
 </div>

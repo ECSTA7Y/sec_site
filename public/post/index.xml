@@ -94,8 +94,10 @@ do.call(mean, list(1:10, na.rm = TRUE))#&amp;gt; [1] 5.5mean(1:10, na.rm = TRU
       <pubDate>Fri, 27 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>/hello_js/</guid>
-      <description>测试实例function myFunction(){alert(&#34;Hello World!&#34;);}点我急需解决的问题：
-使用Js实现上一页下一页功能！</description>
+      <description>测试实例function myFunction(){alert(&#34;Hello World!&#34;);}点我急需解决的问题：
+使用Js实现上一页下一页功能！
+When you’ve written the same code 3 times, write a function
+When you’ve given the same in-person advice 3 times, write a blog post— David Robinson (@drob) November 9, 2017</description>
     </item>
     
     <item>

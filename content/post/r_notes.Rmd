@@ -2,18 +2,22 @@
 title: Useful R Notes
 date: "2020-01-05"
 slug: r_notes
+html_document:
+    toc: true
+    highlight: tango
 ---
 
 [Advanced R 2nd edition](https://adv-r.hadley.nz/)
 
 ```{r,include=F}
-knitr::opts_chunk$set(comment='#>',error=T,message = F,warning = F,fig.align='center',out.width ='90%')
+knitr::opts_chunk$set(comment='#>',error=T,message = F,warning = F,fig.align='center',out.width ='90%',collapse = T)
 ```
 
 这个文章记录我对R的一些练习重点
 
 
 R 中的所有标准运算符都是函数！包括`+`、`$`、`[`、`(`
+
 
 
 
@@ -148,5 +152,8 @@ str(df[, "x"])
 ```
 
 
-
+```{r}
+library(magrittr)
+iris %>% head(10)
+```
 
