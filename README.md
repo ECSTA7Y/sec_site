@@ -4,7 +4,7 @@ A website for practice network skills
 
 This is my second website.
 
-<https://programfun.netlify.com/>
+<https://programfun.netlify.app/>
 
 Clone it:
 
