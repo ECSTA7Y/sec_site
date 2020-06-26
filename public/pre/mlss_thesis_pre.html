@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>机器学习在社会科学实证研究中的应用</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="宋骁" />
+    <link rel="stylesheet" href="GreenLight.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# 机器学习在社会科学实证研究中的应用
+## 以中国教育追踪调查数据为例
+### 宋骁
+### 华东师范大学 社会发展学院
+### 2020年6月26日
+
+---
+
+
+
+
+
+
+# 大纲
+
++ 传统定量方法的缺陷与误区
+   + 模型的不确定性
+   
+   + P值的误用
+
++ 机器学习方法的特点
+   + LASSO
+   
+   + Xgboost 集成学习
+   
++ 数据介绍
+
++ 分析结果
+
++ 结论与展望
+
+
+
+---
+
+
+# 研究背景
+
++ 社会科学中的变量关系复杂，而且具备高维、非线性、交互性的特征
+
++ 社会科学使用统计模型(GLM)来证明变量间关系由来已久*
+
++ 但社会科学研究人员对统计模型的使用存在许多误区
+
+
+
+.footnote[[*] Raftery A E. Statistics in sociology, 1950–2000: A selective review[J]. Sociological Methodology, Wiley Online Library, 2001, 31(1): 1–45.]
+
+---
+
+## 广义线性模型的不稳定性
+
++ 加入不同的协变量，同一个回归系数的结果可能区别较大，又称“罗生门效应” *
+
++ 带有很强的假设(正态、线性、正交)
+
++ 广义线性模型虽然简洁，但无法挖掘变量中复杂的信息
+
+
+
+
+.footnote[[*] Breiman L, others. Statistical modeling: The two cultures (with comments and a rejoinder
+by the author)[J]. Statistical science, Institute of Mathematical Statistics, 2001, 16(3): 199–231.]
+
+---
+
+# P值与假设检验的“罪行”
+
++ 置信水平和P值这两个概念经常被混淆 
+
++ 假设检验只能拒绝掉一个假设而不能证明一个假设成立
+
++ P&lt;0.05常常被当做统计显著的“金标准”
+
++ 假设检验使得统计结果成为了非此即彼的“是-否决策”
+
+---
+
+## 功效分析(Power Analysis)的缺失
+
++ 只看到显著，看不到假显著
+
++ 小样本和神奇方法导致不可靠的结论
+
++ 在较高的测量精度下，组间差异几乎总能被发现
+
+**为什么定量研究总在证明常识！**
+
+---
+
+# P值操纵与P值选择(区别于学术造假)
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="mlss_thesis_pre_files/figure-html/unnamed-chunk-3-1.svg" alt="密度分布：28个学科348414份期刊论文里的3623355个p值，数据来源于`tidypval`包" width="80%" /&gt;
+&lt;p class="caption"&gt;密度分布：28个学科348414份期刊论文里的3623355个p值，数据来源于`tidypval`包&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# P值歧视？
+
++ 相当多的学科在P=0.05 处存在密度集中，呈双峰分布
+
++ 在P值处于“边缘显著”时，研究者会选择性地报告更为显著的结果†
+
++ 期刊更倾向于发表“统计显著” 和“非常不显著”的文章
+
+
+.footnote[[†] Brodeur A, Lé M, Sangnier M, et.al. Star Wars: The Empirics Strike Back[J]. American Economic Journal: Applied Economics, 2016, 8(1): 1–32.]
+
+---
+
+# 既然这一套工具有这么多缺点，为什么还要使用它呢？
+
++ 因果推断
+
+   因果推断真的那么万能吗？相当多的领域其实不需要因果推断(比如多因素比较研究)
+
++ 可解释性
+
+   可解释性不过是皇帝的新衣？真的有可解释性吗？
+
++ 奥卡姆剃刀原则
+
+   真的简洁吗？为什么不使用直观的&lt;font color=#FF0000&gt;统计图形&lt;/font&gt;？
+
+---
+
+# 可解释性
+
+如果其他变量可以不变，而某一个变量可以自由变动，说明这些变量独立。&lt;font color=#FF0000&gt;如果这些变量独立，单独回归不就行了&lt;/font&gt;，还为什么要做多自变量回归？做多自变量回归的理由就是因为它们不独立!
+
+实际上, 多重线性回归的单独某个系数没有可解释性! 只有对因变量预测的共同影响(除非自变量矩阵为正交矩阵! )。&lt;font color=#FF0000&gt;由于多重回归单独系数大小没有意义&lt;/font&gt;，通常线性回归教科书关于那些系数的单独显著性检验和其他推断完全是浪费老师和学生的光阴! (这些占通常回归课本的90% 篇幅)&lt;sup&gt;*&lt;/sup&gt; 
+
+.footnote[[*] 吴喜之.从模型驱动的集体推断到数据驱动的个体预测[D]. 第十二届中国R 会议(北京), 2019.]
+
+---
+
+class: inverse, middle, center
+
+.large[
+
+# 机器学习算法的特点
+
+]
+
+---
+
+## 特点
+
++ 不受制于高维变量，可以处理高维数据集
+
++ 泛化能力强，对新数据预测能力好
+
++ 数据驱动：交叉验证(cross validation)的方法训练算法
+
++ **训练集、测试集的划分**
+
++ 也能够有很好的可解释性(虽然可能损失稳定性)
+
+---
+
+## 决策树算法的可解释性
+
+&lt;img src="mlss_thesis_pre_files/figure-html/unnamed-chunk-4-1.svg" width="60%" style="display: block; margin: auto;" /&gt;
+
++ 非线性划分
++ 自动拟合交互效应
+
+---
+
+# 中国教育追踪调查
+
++ 中国教育追踪调查(CEPS)2013-2014学年基线数据
+
++ 合并家庭(父母填答)、班级(班主任填答)、学校(校长填答)、学生(个人填答)数据
+
++ 共得到53个自变量
+
+---
+
+# 本文所用机器学习方法介绍
+
+## LASSO
+
+损失函数：
+
+`$$\hat{\beta_{Lasso}} = arg min_{\beta \in R^d}||Y - X\beta||^2 +\lambda \sum_{j = 1}^{d}|\beta_j|$$`
++ 引入 `\({{\rm{L}}_1}\)` 范数  `\(\sum_{j = 1}^{d}|\beta_j|\)` ，正则化参数 `\(\lambda\)`
+
++ 能有效避免过拟合问题
+
++ 类似于一种&lt;font color=#FF0000&gt;逐步回归&lt;/font&gt;，能够连续地收缩变量
+
+---
+
+## Xgboost
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="boosting.png" alt="Boosting算法的可加性" width="80%" /&gt;
+&lt;p class="caption"&gt;Boosting算法的可加性&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
++ 属于集成学习方法(ensemble learning)，组合多个基学习器，最终将结果相加
++ 不同的基学习器通过串行的方式运行，即每一棵决策树学习上一棵树的残差
++ 在其他方面也做了许多改进
+
+---
+
+class: inverse, middle, center
+
+.large[
+
+# 结果分析
+
+]
+---
+
+## 广义线性模型究竟有多不稳定？
+
+一则模拟
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="mlss_thesis_pre_files/figure-html/unnamed-chunk-6-1.svg" alt="使用有放回抽样随机抽取10 个协变量后，通过这种方式抽取200次生成了200种不同的变量组合，使用这些自变量分别进行线性回归，散点展示了“母亲教育年限”系数的大小，小于0 的系数用红点标出。" width="80%" /&gt;
+&lt;p class="caption"&gt;使用有放回抽样随机抽取10 个协变量后，通过这种方式抽取200次生成了200种不同的变量组合，使用这些自变量分别进行线性回归，散点展示了“母亲教育年限”系数的大小，小于0 的系数用红点标出。&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# LASSO结果可视化
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="mlss_thesis_pre_files/figure-html/unnamed-chunk-7-1.svg" alt="LASSO回归系数收缩图。右侧单词为变量名标签；上方坐标轴为模型自由度，曲线颜色与变量对应。随着惩罚项  `\(\log(\lambda)\)`值不断增大，回归系数向0不断收缩。" width="70%" /&gt;
+&lt;p class="caption"&gt;LASSO回归系数收缩图。右侧单词为变量名标签；上方坐标轴为模型自由度，曲线颜色与变量对应。随着惩罚项  `\(\log(\lambda)\)`值不断增大，回归系数向0不断收缩。&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+# Xgboost算法：机制解释
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="mlss_thesis_pre_files/figure-html/unnamed-chunk-8-1.svg" alt="Xgboost算法的变量重要性排序" width="80%" /&gt;
+&lt;p class="caption"&gt;Xgboost算法的变量重要性排序&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## 所有算法的准确性评估结果
+
+| 算法     | 交叉验证RMSE | 测试集RMSE | 10折交叉验证 `\(R^2\)`  | 测试集 `\(R^2\)`  |
+|----------|:----------:|:----------:|:-------------:|:-------------:|
+| 线性回归(逐步回归法筛选)|    8.991   |    9.143   |     0.158     |     0.153     |
+| LASSO    |    9.041   |    9.135   |     0.153     |     0.155     |
+| 随机森林 |    9.026    |  8.905     |   0.157      |  0.197    |
+| Xgboost  |   8.868     |  8.769 |    0.185    |   0.221    |
+
+
++ 机器学习算法的泛化能力强于广义线性模型(更稳定)
+
++ 集成学习算法的泛化能力强于单个算法
+
+---
+
+# 对CEPS数据分析后的结论
+
++ 单一因素无法决定学习成绩
+
++ 父母的教育期望、检查作业和辅导行为等系列变量的预测能力较强；其次重要的变量分别是教师资格证人数、学校电脑数等
+
++ 家庭教育和学校实力对于初中学生的数学成绩有重要影响
+
++ 在家庭中使用方言交流的家庭，孩子数学成绩较差
+
++ 班级环境也是重要解释因素(班级内有抽烟喝酒的学生)
+
+---
+
+# 结论
+
++ 要注重对定量方法的研究:
+    + 怎么处理的数据？
+    + 结论怎么得到的？决策的依据是什么？
+    + 结论可靠吗？样本量多少？
+    
++ 如果要使用传统P值方法，同时报告置信区间、功效检验结果。
+
++ 模型的可解释性与泛化能力不可兼得，但机器学习的可解释力越来越强
+
++ 使用新的方法开拓社会科学研究的视野，为其带来更广泛的问题域
+
++ **分享论文源代码和数据，推动可复制性研究**
+
++ 减少对Microsoft Word的依赖 ~~总是在各种软件中换来换去，把A软件的结果导入B，把B的表格和图形贴入C~~ 为什么不一键生成论文？
+
+---
+
+# 联系方式
+
+宋骁
+
+邮箱 [`xsong@stu.ecnu.edu.cn`](xsong@stu.ecnu.edu.cn)
+
+个人网站 [`https://xsong.ltd`](https://xsong.ltd)
+
+公众号 ApocalypseNow
+
+
+
+
+---
+
+class: inverse, middle, center
+
+.large[
+
+谢谢！
+
+Q &amp; A ?
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
