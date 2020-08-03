@@ -92,6 +92,9 @@ git reset --hard 1094a # 指定回到未来版本，1094a为版本号
 git push origin master -–force
 ```
 
+
+
+
 ---
 
 Linux(Ubuntu) Git Install
@@ -103,10 +106,17 @@ sudo apt-get install git
 ```
 Some tips: Linux system could access Windows files, thus I could edit them. It is very convenient to use Ubuntu 18.04 to finish all tasks.  
 
+# 将本地git仓库与远程仓库相关联
+
+https://blog.csdn.net/qq_35246620/article/details/69668846
 
 
-
-
-
+```
+git init 
+git remote add
+git remote -v
+git pull origin master
+```
+再进行push操作
 
 
